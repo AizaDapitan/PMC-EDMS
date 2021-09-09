@@ -11,7 +11,7 @@
 
 			<div class="modal-body">
 				
-				<form method="post" action="/units" class="form-horizontal">
+				<form method="post" action="{{ route('units') }}" class="form-horizontal">
 					@csrf
 
 				 	<div class="form-group">

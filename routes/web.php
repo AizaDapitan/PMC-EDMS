@@ -22,23 +22,23 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/dashboard', 'HomeController@index')->name('home');
-Route::get('/downtime-list', 'HomeController@downtimeList');
-Route::get('/genset-list', 'GensetController@gensetList');
+Route::get('dashboard', 'HomeController@index')->name('home');
+Route::get('downtime-list', 'HomeController@downtimeList')->name('downtime-list');
+Route::get('genset-list', 'GensetController@gensetList')->name('genset-list');
 Route::get('/rpt_genset_utilization', 'GensetController@gensetReport');
-Route::get('/rpt_downtimelist', 'DowntimeController@downtimeReport');
-Route::get('/rpt_flatdata', 'DowntimeController@downtimeReportFlatdata');
-Route::get('/rpt_chart', 'DowntimeController@downtimeReportChart');
-Route::get('/rpt_masterlist', 'DowntimeController@downtimeReportMasterlist');
-Route::get('/rpt_rawdata', 'DowntimeController@downtimeReportRawData');
-Route::get('/rpt_daily', 'DowntimeController@downtimeReportDaily');
+Route::get('rpt_downtimelist', 'DowntimeController@downtimeReport')->name('rpt_downtimelist');
+Route::get('rpt_flatdata', 'DowntimeController@downtimeReportFlatdata')->name('rpt_flatdata');
+Route::get('rpt_chart', 'DowntimeController@downtimeReportChart')->name('rpt_chart');
+Route::get('rpt_masterlist', 'DowntimeController@downtimeReportMasterlist')->name('rpt_masterlist');
+Route::get('rpt_rawdata', 'DowntimeController@downtimeReportRawData')->name('rpt_rawdata');
+Route::get('rpt_daily', 'DowntimeController@downtimeReportDaily')->name('rpt_daily');
 Route::get('/rpt_flatdata_print', 'DowntimeController@downtimeReportFlatdataPrint');
 Route::get('/rpt_chart_print', 'DowntimeController@downtimeReportChartPrint');
 Route::get('/rpt_masterlist_print', 'DowntimeController@downtimeReportMasterlistPrint');
 Route::get('/rpt_rawdata_print', 'DowntimeController@downtimeReportRawDataPrint');
 Route::get('/rpt_daily_print', 'DowntimeController@downtimeReportDailyPrint');
-Route::get('/genset', 'HomeController@genset');
-Route::get('/assets', 'HomeController@assets');
+Route::get('genset', 'HomeController@genset')->name('genset');
+Route::get('assets', 'HomeController@assets')->name('assets');
 Route::get('/asset/new', 'AssetController@newAsset');
 
 Route::get('/downtime/{id}', 'DowntimeController@editDowntime');
@@ -57,8 +57,8 @@ Route::get('/change-password', function() {
 
 Route::patch('/change-password', 'HomeController@updatePassword');
 
-Route::post('/units', 'UnitsController@store');
-Route::post('/downtime', 'DowntimeController@store');
+Route::post('units', 'UnitsController@store')->name('units');
+Route::post('downtime', 'DowntimeController@store')->name('downtime');
 Route::post('/genset', 'GensetController@store');
 Route::post('/asset', 'AssetController@store');
 

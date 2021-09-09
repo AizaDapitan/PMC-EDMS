@@ -12,7 +12,7 @@
 			
 				<div class="modal-body">							 
 					 
-					<form method="POST" id="downtimeform" action="/downtime" class="form-horizontal">
+					<form method="POST" id="downtimeform" action="{{ route('downtime') }}" class="form-horizontal">
 						@csrf
 
 					 	<div class="form-group">	

@@ -3,7 +3,7 @@
 	<div class="page-header-inner">
 		<!-- BEGIN LOGO -->
 		<div class="page-logo">
-			<a href="/" style="color:white;">
+			<a href="{{ route('home') }}" style="color:white;">
 				<br>EDMS Monitoring
 			</a>
 		</div>
@@ -15,21 +15,21 @@
 			<ul class="nav navbar-nav">
 				<!-- DOC: Remove data-hover="dropdown" and data-close-others="true" attributes below to disable the horizontal opening on mouse hover -->
 				<li class="classic-menu-dropdown {{ request()->path() =='dashboard' ? 'active' : '' }}">
-					<a href="/">
+					<a href="{{ route('home') }}" >
 					Dashboard <span class=" {{ request()->path() =='dashboard' ? 'selected' : '' }}">
 					</span>
 					</a>
 				</li>
 				<li class="classic-menu-dropdown {{ request()->path() =='downtime-list' ? 'active' : '' }}">
-					<a href="/downtime-list">Downtime List <span class="{{ request()->path() =='downtime-list' ? 'selected' : '' }}"></span>
+					<a href="{{ route('downtime-list') }}">Downtime List <span class="{{ request()->path() =='downtime-list' ? 'selected' : '' }}"></span>
 					</a>				
 				</li>	
 				<li class="classic-menu-dropdown {{ request()->path() =='genset' ? 'active' : '' }}">
-					<a href="/genset">Genset Units <span class="{{ request()->path() =='genset' ? 'selected' : '' }}"></span>
+					<a href="{{ route('genset') }}">Genset Units <span class="{{ request()->path() =='genset' ? 'selected' : '' }}"></span>
 					</a>				
 				</li>	
 				<li class="classic-menu-dropdown {{ request()->path() =='assets' ? 'active' : '' }} }}">
-					<a href="/assets">Assets <span class="{{ request()->path() =='assets' ? 'selected' : '' }} }}"></span>
+					<a href="{{ route('assets') }}">Assets <span class="{{ request()->path() =='assets' ? 'selected' : '' }} }}"></span>
 					</a>				
 				</li>	
 				<li class="classic-menu-dropdown">
@@ -58,27 +58,27 @@
 					</a>
 					<ul class="dropdown-menu pull-left">
 						<li>
-							<a href="/rpt_downtimelist" target="_blank">
+							<a href="{{ route('rpt_downtimelist') }}" target="_blank">
 							<i class="fa fa-bookmark-o"></i> Input List</a>
 						</li>
 						<li>
-							<a href="/rpt_flatdata" target="_blank">
+							<a href="{{ route('rpt_flatdata') }}" target="_blank">
 							<i class="fa fa-bookmark-o"></i> Downtime Report</a>
 						</li>
 						<li>
-							<a href="/rpt_chart" target="_blank">
+							<a href="{{ route('rpt_chart') }}" target="_blank">
 							<i class="fa fa-bookmark-o"></i> Chart Report</a>
 						</li>
 						<li>
-							<a href="/rpt_masterlist" target="_blank">
+							<a href="{{ route('rpt_masterlist') }}" target="_blank">
 							<i class="fa fa-bookmark-o"></i> Equipment Master List</a>
 						</li>
 						<li>
-							<a href="/rpt_rawdata" target="_blank">
+							<a href="{{ route('rpt_rawdata') }}" target="_blank">
 							<i class="fa fa-bookmark-o"></i> Raw Data</a>
 						</li>
 						<li>
-							<a href="/rpt_daily" target="_blank">
+							<a href="{{ route('rpt_daily') }}" target="_blank">
 							<i class="fa fa-bookmark-o"></i> Daily Up-Time Report</a>
 						</li>
 						

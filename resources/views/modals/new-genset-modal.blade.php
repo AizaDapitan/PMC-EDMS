@@ -2,7 +2,7 @@
 <div class="modal fade bs-modal-lg" id="gensetdowntime" tabindex="-1" role="gensetdowntime" aria-hidden="true">
 	<div class="modal-dialog">
 		<div class="modal-content">
-			<form method="POST" role="form" id="gensetform" action="/genset">
+			<form method="POST" role="form" id="gensetform" action="{{ route('genset') }}">
 				@csrf
 
 			<div class="modal-header">

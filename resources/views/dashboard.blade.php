@@ -3,36 +3,36 @@
 @section('pageCSS')
 
     <link href="google.css" rel="stylesheet" type="text/css"/>
-    <link href="/themes/metronic/assets/global/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
-    <link href="/themes/metronic/assets/global/plugins/simple-line-icons/simple-line-icons.min.css" rel="stylesheet" type="text/css"/>
-    <link href="/themes/metronic/assets/global/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
-    <link href="/themes/metronic/assets/global/plugins/uniform/css/uniform.default.css" rel="stylesheet" type="text/css"/>
-    <link href="/themes/metronic/assets/global/plugins/bootstrap-switch/css/bootstrap-switch.min.css" rel="stylesheet" type="text/css"/>
+    <link href="{{env('APP_URL')}}/themes/metronic/assets/global/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
+    <link href="{{env('APP_URL')}}/themes/metronic/assets/global/plugins/simple-line-icons/simple-line-icons.min.css" rel="stylesheet" type="text/css"/>
+    <link href="{{env('APP_URL')}}/themes/metronic/assets/global/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+    <link href="{{env('APP_URL')}}/themes/metronic/assets/global/plugins/uniform/css/uniform.default.css" rel="stylesheet" type="text/css"/>
+    <link href="{{env('APP_URL')}}/themes/metronic/assets/global/plugins/bootstrap-switch/css/bootstrap-switch.min.css" rel="stylesheet" type="text/css"/>
     <!-- END GLOBAL MANDATORY STYLES -->
     <!-- BEGIN PAGE LEVEL PLUGIN STYLES -->
-    <link href="/themes/metronic/assets/global/plugins/bootstrap-daterangepicker/daterangepicker-bs3.css" rel="stylesheet" type="text/css"/>
-    <link href="/themes/metronic/assets/global/plugins/fullcalendar/fullcalendar/fullcalendar.css" rel="stylesheet" type="text/css"/>
+    <link href="{{env('APP_URL')}}/themes/metronic/assets/global/plugins/bootstrap-daterangepicker/daterangepicker-bs3.css" rel="stylesheet" type="text/css"/>
+    <link href="{{env('APP_URL')}}/themes/metronic/assets/global/plugins/fullcalendar/fullcalendar/fullcalendar.css" rel="stylesheet" type="text/css"/>
 
-    <link rel="stylesheet" type="text/css" href="/themes/metronic/assets/global/plugins/clockface/css/clockface.css"/>
-    <link rel="stylesheet" type="text/css" href="/themes/metronic/assets/global/plugins/bootstrap-datepicker/css/datepicker3.css"/>
-    <link rel="stylesheet" type="text/css" href="/themes/metronic/assets/global/plugins/bootstrap-timepicker/css/bootstrap-timepicker.min.css"/>
-    <link rel="stylesheet" type="text/css" href="/themes/metronic/assets/global/plugins/bootstrap-colorpicker/css/colorpicker.css"/>
-    <link rel="stylesheet" type="text/css" href="/themes/metronic/assets/global/plugins/bootstrap-daterangepicker/daterangepicker-bs3.css"/>
-    <link rel="stylesheet" type="text/css" href="/themes/metronic/assets/global/plugins/bootstrap-datetimepicker/css/datetimepicker.css"/>
+    <link rel="stylesheet" type="text/css" href="{{env('APP_URL')}}/themes/metronic/assets/global/plugins/clockface/css/clockface.css"/>
+    <link rel="stylesheet" type="text/css" href="{{env('APP_URL')}}/themes/metronic/assets/global/plugins/bootstrap-datepicker/css/datepicker3.css"/>
+    <link rel="stylesheet" type="text/css" href="{{env('APP_URL')}}/themes/metronic/assets/global/plugins/bootstrap-timepicker/css/bootstrap-timepicker.min.css"/>
+    <link rel="stylesheet" type="text/css" href="{{env('APP_URL')}}/themes/metronic/assets/global/plugins/bootstrap-colorpicker/css/colorpicker.css"/>
+    <link rel="stylesheet" type="text/css" href="{{env('APP_URL')}}/themes/metronic/assets/global/plugins/bootstrap-daterangepicker/daterangepicker-bs3.css"/>
+    <link rel="stylesheet" type="text/css" href="{{env('APP_URL')}}/themes/metronic/assets/global/plugins/bootstrap-datetimepicker/css/datetimepicker.css"/>
 
-    <link href="/themes/metronic/assets/global/plugins/nouislider/jquery.nouislider.css" rel="stylesheet" type="text/css"/>
+    <link href="{{env('APP_URL')}}/themes/metronic/assets/global/plugins/nouislider/jquery.nouislider.css" rel="stylesheet" type="text/css"/>
 
 
     <!-- END PAGE LEVEL PLUGIN STYLES -->
     <!-- BEGIN PAGE STYLES -->
-    <link href="/themes/metronic/assets/admin/pages/css/tasks.css" rel="stylesheet" type="text/css"/>
+    <link href="{{env('APP_URL')}}/themes/metronic/assets/admin/pages/css/tasks.css" rel="stylesheet" type="text/css"/>
     <!-- END PAGE STYLES -->
     <!-- BEGIN THEME STYLES -->
-    <link href="/themes/metronic/assets/global/css/components.css" rel="stylesheet" type="text/css"/>
-    <link href="/themes/metronic/assets/global/css/plugins.css" rel="stylesheet" type="text/css"/>
-    <link href="/themes/metronic/assets/admin/layout/css/layout.css" rel="stylesheet" type="text/css"/>
-    <link id="style_color" href="/themes/metronic/assets/admin/layout/css/themes/default.css" rel="stylesheet" type="text/css"/>
-    <link href="/themes/metronic/assets/admin/layout/css/custom.css" rel="stylesheet" type="text/css"/>
+    <link href="{{env('APP_URL')}}/themes/metronic/assets/global/css/components.css" rel="stylesheet" type="text/css"/>
+    <link href="{{env('APP_URL')}}/themes/metronic/assets/global/css/plugins.css" rel="stylesheet" type="text/css"/>
+    <link href="{{env('APP_URL')}}/themes/metronic/assets/admin/layout/css/layout.css" rel="stylesheet" type="text/css"/>
+    <link id="style_color" href="{{env('APP_URL')}}/themes/metronic/assets/admin/layout/css/themes/default.css" rel="stylesheet" type="text/css"/>
+    <link href="{{env('APP_URL')}}/themes/metronic/assets/admin/layout/css/custom.css" rel="stylesheet" type="text/css"/>
 
     <style type="text/css">
         .static_width {
@@ -80,7 +80,7 @@
                 EDMS <small>Availability Records</small>
             </h3>
 
-            <form method="GET" role="form" action="/dashboard">
+            <form method="GET" role="form" action="{{ route('home') }}">
                 <!--- Filter Display -->
                 <ul class="page-breadcrumb breadcrumb">
                     
@@ -137,7 +137,7 @@
 
                     <li>
                         <button type="submit" class="btn green btn-sm" > Go </button>
-                        <a href="/dashboard" class="btn purple btn-sm" style="color:white;">Reset</a>
+                        <a href="{{env('APP_URL')}}/dashboard" class="btn purple btn-sm" style="color:white;">Reset</a>
                     </li> 
 
                     <li class="pull-right" style="position:relative;top:5px;">
@@ -160,7 +160,7 @@
         <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
             <div class="dashboard-stat blue-madison" style="height:130px;">
                 <div class="visual">
-                    <img src="/images/aselco.jpg" alt="" width="150">
+                    <img src="{{env('APP_URL')}}/images/aselco.jpg" alt="" width="150">
                 </div>
                 <div class="details">
                     <div class="number">
@@ -170,7 +170,7 @@
                          ASELCO POWER MAIN INCOMER
                     </div>
                 </div>
-                <a class="more pull-right" href="/dashboard?s_type=ASELCO+POWER+MAIN+INCOMER">
+                <a class="more pull-right" href="{{env('APP_URL')}}/dashboard?s_type=ASELCO+POWER+MAIN+INCOMER">
                  View more&nbsp;&nbsp;<i class="m-icon-swapright m-icon-white"></i>
                 </a>
             </div>
@@ -179,7 +179,7 @@
         <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
             <div class="dashboard-stat red-intense" style="height:130px;">
                 <div class="visual">
-                    <img src="/images/feeder_breaker.png" alt="" width="130" style="position:relative;top:-30px;">
+                    <img src="{{env('APP_URL')}}/images/feeder_breaker.png" alt="" width="130" style="position:relative;top:-30px;">
                 </div>
                 <div class="details">
                     <div class="number">
@@ -189,7 +189,7 @@
                          FEEDER BREAKERS
                     </div>
                 </div>
-                <a class="more pull-right" href="/dashboard?s_type=FEEDER+BREAKERS">
+                <a class="more pull-right" href="{{env('APP_URL')}}/dashboard?s_type=FEEDER+BREAKERS">
                  View more&nbsp;&nbsp;<i class="m-icon-swapright m-icon-white"></i>
                 </a>
             </div>
@@ -198,7 +198,7 @@
         <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
             <div class="dashboard-stat green-haze" style="height:130px;">
                 <div class="visual">
-                    <img src="/images/genset.png" alt="" width="180">
+                    <img src="{{env('APP_URL')}}/images/genset.png" alt="" width="180">
                 </div>
                 <div class="details">
                     <div class="number">
@@ -208,7 +208,7 @@
                          GENSET UNITS AND <br> GENSET BREAKERS
                     </div>
                 </div>                      
-                <a class="more pull-right margin-top-10" href="/dashboard?s_type=GENSET+UNITS+AND+GENSET+BREAKERS">
+                <a class="more pull-right margin-top-10" href="{{env('APP_URL')}}/dashboard?s_type=GENSET+UNITS+AND+GENSET+BREAKERS">
                  View more <i class="m-icon-swapright m-icon-white"></i>
                 </a>
             </div>
@@ -319,7 +319,7 @@
 
                                     @foreach( $val1 as $unit ) 
                                         <tr>
-                                            <td class="text-center static_width"> <a href="#" onclick="window.open('/unit/{{$unit->id}}','displayWindow','toolbar=no,scrollbars=yes,width=800,height=600'); return false;" style="color: #000000;"> {{ $unit->name }} </a> </td>
+                                            <td class="text-center static_width"> <a href="#" onclick="window.open( '{{ env('APP_URL') }}/unit/{{$unit->id}}','displayWindow','toolbar=no,scrollbars=yes,width=800,height=600'); return false;" style="color: #000000;"> {{ $unit->name }} </a> </td>
                                             
                                             @foreach( $displayData as $unit_d_data )
 
@@ -413,7 +413,7 @@
                                             <td width="5%">{{ $down->end_date->toFormattedDateString() }} </td>
                                             <td width="65%">{{ $down->remarks }} </td>
                                             <td width="10%">
-                                                <a href="#" class="btn purple btn-sm" onclick="window.open('/downtime/{{$down->id}}','displayWindow','toolbar=no,scrollbars=yes,width=800,height=600'); return false; "
+                                                <a href="#" class="btn purple btn-sm" onclick="window.open( '{{ env('APP_URL') }}/downtime/{{$down->id}}','displayWindow','toolbar=no,scrollbars=yes,width=800,height=600'); return false; "
                                                     title="Edit Downtime"><i class="fa fa-edit"></i></a>
                                                 <a href="#" class="btn red btn-sm deletedl" data="{{$down->id}}"
                                                     title="Delete Downtime"><i class="fa fa-minus-circle"></i></a>
@@ -448,50 +448,50 @@
 
 @section('pageJS')
     
-    <script src="/themes/metronic/assets/global/plugins/jquery-1.11.0.min.js" type="text/javascript"></script>
-    <script src="/themes/metronic/assets/global/plugins/jquery-migrate-1.2.1.min.js" type="text/javascript"></script>
+    <script src="{{env('APP_URL')}}/themes/metronic/assets/global/plugins/jquery-1.11.0.min.js" type="text/javascript"></script>
+    <script src="{{env('APP_URL')}}/themes/metronic/assets/global/plugins/jquery-migrate-1.2.1.min.js" type="text/javascript"></script>
     <!-- IMPORTANT! Load jquery-ui-1.10.3.custom.min.js before bootstrap.min.js to fix bootstrap tooltip conflict with jquery ui tooltip -->
-    <script src="/themes/metronic/assets/global/plugins/jquery-ui/jquery-ui-1.10.3.custom.min.js" type="text/javascript"></script>
-    <script src="/themes/metronic/assets/global/plugins/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
-    <script src="/themes/metronic/assets/global/plugins/bootstrap-hover-dropdown/bootstrap-hover-dropdown.min.js" type="text/javascript"></script>
-    <script src="/themes/metronic/assets/global/plugins/jquery-slimscroll/jquery.slimscroll.min.js" type="text/javascript"></script>
-    <script src="/themes/metronic/assets/global/plugins/jquery.blockui.min.js" type="text/javascript"></script>
-    <script src="/themes/metronic/assets/global/plugins/jquery.cokie.min.js" type="text/javascript"></script>
-    <script src="/themes/metronic/assets/global/plugins/uniform/jquery.uniform.min.js" type="text/javascript"></script>
-    <script src="/themes/metronic/assets/global/plugins/bootstrap-switch/js/bootstrap-switch.min.js" type="text/javascript"></script>
+    <script src="{{env('APP_URL')}}/themes/metronic/assets/global/plugins/jquery-ui/jquery-ui-1.10.3.custom.min.js" type="text/javascript"></script>
+    <script src="{{env('APP_URL')}}/themes/metronic/assets/global/plugins/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
+    <script src="{{env('APP_URL')}}/themes/metronic/assets/global/plugins/bootstrap-hover-dropdown/bootstrap-hover-dropdown.min.js" type="text/javascript"></script>
+    <script src="{{env('APP_URL')}}/themes/metronic/assets/global/plugins/jquery-slimscroll/jquery.slimscroll.min.js" type="text/javascript"></script>
+    <script src="{{env('APP_URL')}}/themes/metronic/assets/global/plugins/jquery.blockui.min.js" type="text/javascript"></script>
+    <script src="{{env('APP_URL')}}/themes/metronic/assets/global/plugins/jquery.cokie.min.js" type="text/javascript"></script>
+    <script src="{{env('APP_URL')}}/themes/metronic/assets/global/plugins/uniform/jquery.uniform.min.js" type="text/javascript"></script>
+    <script src="{{env('APP_URL')}}/themes/metronic/assets/global/plugins/bootstrap-switch/js/bootstrap-switch.min.js" type="text/javascript"></script>
     <!-- END CORE PLUGINS -->
     <!-- BEGIN PAGE LEVEL PLUGINS -->
-    <script src="/themes/metronic/assets/global/plugins/jquery.pulsate.min.js" type="text/javascript"></script>
-    <script src="/themes/metronic/assets/global/plugins/bootstrap-daterangepicker/moment.min.js" type="text/javascript"></script>
-    <script src="/themes/metronic/assets/global/plugins/bootstrap-daterangepicker/daterangepicker.js" type="text/javascript"></script>
-    <script src="/themes/metronic/assets/global/plugins/gritter/js/jquery.gritter.js" type="text/javascript"></script>
+    <script src="{{env('APP_URL')}}/themes/metronic/assets/global/plugins/jquery.pulsate.min.js" type="text/javascript"></script>
+    <script src="{{env('APP_URL')}}/themes/metronic/assets/global/plugins/bootstrap-daterangepicker/moment.min.js" type="text/javascript"></script>
+    <script src="{{env('APP_URL')}}/themes/metronic/assets/global/plugins/bootstrap-daterangepicker/daterangepicker.js" type="text/javascript"></script>
+    <script src="{{env('APP_URL')}}/themes/metronic/assets/global/plugins/gritter/js/jquery.gritter.js" type="text/javascript"></script>
     <!-- IMPORTANT! fullcalendar depends on jquery-ui-1.10.3.custom.min.js for drag & drop support -->
-    <script src="/themes/metronic/assets/global/plugins/fullcalendar/fullcalendar/fullcalendar.min.js" type="text/javascript"></script>
-    <script src="/themes/metronic/assets/global/plugins/jquery-easypiechart/jquery.easypiechart.js" type="text/javascript"></script>
-    <script src="/themes/metronic/assets/global/plugins/jquery.sparkline.min.js" type="text/javascript"></script>
-    <script src="/themes/metronic/assets/global/plugins/bootbox/bootbox.min.js" type="text/javascript"></script>
+    <script src="{{env('APP_URL')}}/themes/metronic/assets/global/plugins/fullcalendar/fullcalendar/fullcalendar.min.js" type="text/javascript"></script>
+    <script src="{{env('APP_URL')}}/themes/metronic/assets/global/plugins/jquery-easypiechart/jquery.easypiechart.js" type="text/javascript"></script>
+    <script src="{{env('APP_URL')}}/themes/metronic/assets/global/plugins/jquery.sparkline.min.js" type="text/javascript"></script>
+    <script src="{{env('APP_URL')}}/themes/metronic/assets/global/plugins/bootbox/bootbox.min.js" type="text/javascript"></script>
 
-    <script type="text/javascript" src="/themes/metronic/assets/global/plugins/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
-    <script type="text/javascript" src="/themes/metronic/assets/global/plugins/bootstrap-timepicker/js/bootstrap-timepicker.min.js"></script>
-    <script type="text/javascript" src="/themes/metronic/assets/global/plugins/clockface/js/clockface.js"></script>
-    <script type="text/javascript" src="/themes/metronic/assets/global/plugins/bootstrap-daterangepicker/moment.min.js"></script>
-    <script type="text/javascript" src="/themes/metronic/assets/global/plugins/bootstrap-daterangepicker/daterangepicker.js"></script>
-    <script type="text/javascript" src="/themes/metronic/assets/global/plugins/bootstrap-colorpicker/js/bootstrap-colorpicker.js"></script>
-    <script type="text/javascript" src="/themes/metronic/assets/global/plugins/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js"></script>
+    <script type="text/javascript" src="{{env('APP_URL')}}/themes/metronic/assets/global/plugins/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
+    <script type="text/javascript" src="{{env('APP_URL')}}/themes/metronic/assets/global/plugins/bootstrap-timepicker/js/bootstrap-timepicker.min.js"></script>
+    <script type="text/javascript" src="{{env('APP_URL')}}/themes/metronic/assets/global/plugins/clockface/js/clockface.js"></script>
+    <script type="text/javascript" src="{{env('APP_URL')}}/themes/metronic/assets/global/plugins/bootstrap-daterangepicker/moment.min.js"></script>
+    <script type="text/javascript" src="{{env('APP_URL')}}/themes/metronic/assets/global/plugins/bootstrap-daterangepicker/daterangepicker.js"></script>
+    <script type="text/javascript" src="{{env('APP_URL')}}/themes/metronic/assets/global/plugins/bootstrap-colorpicker/js/bootstrap-colorpicker.js"></script>
+    <script type="text/javascript" src="{{env('APP_URL')}}/themes/metronic/assets/global/plugins/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js"></script>
 
-    <script src="/themes/metronic/assets/global/plugins/nouislider/jquery.nouislider.min.js"></script>
+    <script src="{{env('APP_URL')}}/themes/metronic/assets/global/plugins/nouislider/jquery.nouislider.min.js"></script>
 
 
     <!-- END PAGE LEVEL PLUGINS -->
     <!-- BEGIN PAGE LEVEL SCRIPTS -->
-    <script src="/themes/metronic/assets/global/scripts/metronic.js" type="text/javascript"></script>
-    <script src="/themes/metronic/assets/admin/layout/scripts/layout.js" type="text/javascript"></script>
-    <script src="/themes/metronic/assets/admin/layout/scripts/quick-sidebar.js" type="text/javascript"></script>
-    <script src="/themes/metronic/assets/admin/pages/scripts/index.js" type="text/javascript"></script>
-    <script src="/themes/metronic/assets/admin/pages/scripts/components-pickers.js"></script>
-    <script src="/themes/metronic/assets/admin/pages/scripts/components-nouisliders.js"></script>
+    <script src="{{env('APP_URL')}}/themes/metronic/assets/global/scripts/metronic.js" type="text/javascript"></script>
+    <script src="{{env('APP_URL')}}/themes/metronic/assets/admin/layout/scripts/layout.js" type="text/javascript"></script>
+    <script src="{{env('APP_URL')}}/themes/metronic/assets/admin/layout/scripts/quick-sidebar.js" type="text/javascript"></script>
+    <script src="{{env('APP_URL')}}/themes/metronic/assets/admin/pages/scripts/index.js" type="text/javascript"></script>
+    <script src="{{env('APP_URL')}}/themes/metronic/assets/admin/pages/scripts/components-pickers.js"></script>
+    <script src="{{env('APP_URL')}}/themes/metronic/assets/admin/pages/scripts/components-nouisliders.js"></script>
     <script type="text/javascript"> var unitss = {!! $u_name !!} </script>
-    <script type="text/javascript" src="/js/dashboard.js"></script>
+    <script type="text/javascript" src="{{env('APP_URL')}}/js/dashboard.js"></script>
 
     <script>
 
@@ -523,7 +523,7 @@
 
                             $.ajax({
                                 type:'DELETE',
-                                url:'/downtime/'+x  
+                                url:"{{env('APP_URL')}}/downtime/"+x  
                             }).done(function(data){
                                 location.reload();
                             });
