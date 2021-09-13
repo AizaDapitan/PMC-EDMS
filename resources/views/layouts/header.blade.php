@@ -34,7 +34,7 @@
 				</li>	
 				<li class="classic-menu-dropdown">
 					<a data-hover="dropdown" data-close-others="true" data-toggle="dropdown" href="javascript:;">
-					INPUT <i class="fa fa-angle-down"></i>
+					Input <i class="fa fa-angle-down"></i>
 					</a>
 					<ul class="dropdown-menu pull-left">
 						<li>
@@ -45,13 +45,28 @@
 							<a data-toggle="modal" href="#munit" data-backdrop="static">
 							<i class="fa fa-bookmark-o"></i> Add Unit</a>	
 						</li>
-						<!-- <li>							
-							<a data-toggle="modal" href="#tunit">
-							<i class="fa fa-bookmark-o"></i> Set Target</a>	
-						</li> -->
 											
 					</ul>
-				</li>
+				</li>		
+				<li class="classic-menu-dropdown">
+					<a data-hover="dropdown" data-close-others="true" data-toggle="dropdown" href="javascript:;">
+					Maintenance <i class="fa fa-angle-down"></i>
+					</a>
+					<ul class="dropdown-menu pull-left">
+						<li>
+							<a href="{{ route('admin.users') }}">
+							<i class="fa fa-bookmark-o"></i> Users</a>
+						</li>
+						<li>
+							<a href="{{ route('admin.roles') }}">
+							<i class="fa fa-bookmark-o"></i> Roles</a>
+						</li>						
+						<li>
+							<a href="{{ route('admin.permissions') }}">
+							<i class="fa fa-bookmark-o"></i> Permissions</a>
+						</li>						
+					</ul>
+				</li>	
 				<li class="classic-menu-dropdown">
 					<a data-hover="dropdown" data-close-others="true" data-toggle="dropdown" href="javascript:;">
 					Reports <i class="fa fa-angle-down"></i>

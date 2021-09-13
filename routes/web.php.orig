@@ -29,7 +29,11 @@ Route::group(['middleware' => ['auth']], function () {
 
     Route::get('logout', 'LoginController@logout')->name('logout');
 
+<<<<<<< HEAD
     // return view('auth.passwords.change', compact('id'));
+=======
+    //return view('auth.passwords.change', compact('id'));
+>>>>>>> 7786d221f41196dc19c29174c07d16689af85004
 
     Route::patch('/change-password', 'HomeController@updatePassword');
     Route::get('dashboard', 'HomeController@index')->name('home');
@@ -104,14 +108,6 @@ Route::group(['middleware' => ['auth']], function () {
             Route::any('search', 'RoleController@search')->name('admin.roles.search');
             Route::post('/edit', 'RoleController@edit')->name('admin.roles.edit');
             Route::put('update', 'RoleController@update')->name('admin.roles.update');
-        });
-        // Permission routes
-        Route::group(['prefix' => 'permissions'], function () {
-            Route::get('/', 'PermissionController@index')->name('admin.permissions');
-            Route::post('store', 'PermissionController@store')->name('admin.permissions.store');
-            Route::any('search', 'PermissionController@search')->name('admin.permissions.search');
-            Route::post('/edit', 'PermissionController@edit')->name('admin.permissions.edit');
-            Route::put('update', 'PermissionController@update')->name('admin.permissions.update');
         });
     });
 });

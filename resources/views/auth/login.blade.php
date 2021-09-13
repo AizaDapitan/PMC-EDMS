@@ -2,53 +2,59 @@
 
 @section('content')
 
-    <form method="POST" action="{{ route('login') }}" class="login-form">
-        @csrf
+<form method="POST" action="{{ route('login') }}" class="login-form">
+    @csrf
 
-        <h3 class="form-title">
-            <strong>Login to your domain</strong>
-        </h3>
+    <h3 class="form-title">
+        <strong>Login to your domain</strong>
+    </h3>
+    @if (count($errors) > 0)
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+            <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+    @endif
+    <div class="form-group @error('username') has-error @enderror">
 
-        <div class="form-group @error('username') has-error @enderror">
+        <div class="input-icon">
+            <i class="fa fa-user"></i>
+            <input class="form-control placeholder-no-fix" type="text" autocomplete="off" placeholder="Username" name="username" required value="{{ old('username') }}" autofocus />
+        </div>
 
-            <div class="input-icon">
-                <i class="fa fa-user"></i>
-                <input class="form-control placeholder-no-fix" type="text" 
-                    autocomplete="off" placeholder="Username" name="username" required
-                    value="{{ old('username') }}" autofocus />
-            </div>
-            
-            @error('username')
+        <!-- @error('username')
                 <span for="username" class="help-block">{{ $message }}</span>
-            @enderror
+            @enderror -->
 
+    </div>
+
+    <div class="form-group">
+
+        <div class="input-icon">
+            <i class="fa fa-lock"></i>
+            <input class="form-control placeholder-no-fix" type="password" autocomplete="off" placeholder="Password" name="password" required="required" />
         </div>
 
-        <div class="form-group">
-
-            <div class="input-icon">
-                <i class="fa fa-lock"></i>
-                <input class="form-control placeholder-no-fix" type="password" autocomplete="off" placeholder="Password" name="password" required="required" />
-            </div>
-
-            @error('password')
+        <!-- @error('password')
                 <span for="password" class="help-block">{{ $message }}</span>
-            @enderror
+            @enderror -->
 
-        </div>
+    </div>
+
+    <div class="form-actions">
 
         <div class="form-actions">
 
-            <div class="form-actions">
-
-                <button type="submit" class="btn green pull-right">
-                    Login <i class="m-icon-swapright m-icon-white"></i>
-                </button>
-                
-            </div>
+            <button type="submit" class="btn green pull-right">
+                Login <i class="m-icon-swapright m-icon-white"></i>
+            </button>
 
         </div>
-        
-    </form>
+
+    </div>
+
+</form>
 
 @endsection
