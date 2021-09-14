@@ -29,7 +29,7 @@
 					</a>				
 				</li>	
 				<li class="classic-menu-dropdown {{ request()->path() =='assets' ? 'active' : '' }} }}">
-					<a href="{{ route('assets') }}">Assets <span class="{{ request()->path() =='assets' ? 'selected' : '' }} }}"></span>
+					<a href="{{ route('EDMS-assets') }}">Assets <span class="{{ request()->path() =='assets' ? 'selected' : '' }} }}"></span>
 					</a>				
 				</li>	
 				<li class="classic-menu-dropdown">
@@ -67,6 +67,25 @@
 						</li>						
 					</ul>
 				</li>	
+
+				<li class="classic-menu-dropdown">
+					<a data-hover="dropdown" data-close-others="true" data-toggle="dropdown" href="javascript:;">
+					Account Management <i class="fa fa-angle-down"></i>
+					</a>
+					<ul class="dropdown-menu pull-left">
+						<li>
+							<a href="{{ route('admin.roleaccessrights') }}">
+							<i class="fa fa-bookmark-o"></i> Role Access Rights</a>
+						</li>		
+
+						<li>
+							<a href="{{ route('admin.useraccessrights') }}">
+							<i class="fa fa-bookmark-o"></i> User Access Rights</a>
+						</li>
+
+					</ul>
+				</li>
+
 				<li class="classic-menu-dropdown">
 					<a data-hover="dropdown" data-close-others="true" data-toggle="dropdown" href="javascript:;">
 					Reports <i class="fa fa-angle-down"></i>

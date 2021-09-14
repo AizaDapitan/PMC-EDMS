@@ -45,7 +45,7 @@
 
 		<div class="col-md-12">
 
-			<form method="GET" action="{{ route('assets') }}">
+			<form method="GET" action="{{ route('EDMS-assets') }}">
 
 				<h3 class="page-title"> EDMS <small>Asset Management</small> </h3>
 				

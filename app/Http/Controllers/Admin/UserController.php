@@ -108,12 +108,4 @@ class UserController extends Controller
     {
         return $this->userService->destroy($id);
     }
-
-    public function logs(Request $request)
-    {
-        return view('admin.users.logs', [
-            'actions' => $this->userService->getUserActions($request),
-            'users' => $this->userService->all(),
-        ]);
-    }
 }

@@ -36,7 +36,25 @@ class RepositoryServiceProvider extends ServiceProvider
                 'App\Permission',
             ],
         ),
-                
+
+        // Role Access Rights
+        array(
+            'interface' => 'App\Repositories\Interfaces\RoleRightRepositoryInterface',
+            'repository' => 'App\Repositories\RoleRightRepository',
+            'service' => 'App\Services\RoleRightService',
+            'model' => [
+                'App\RolesPermissions',
+            ],
+        ),
+        // User Access Rights
+        array(
+            'interface' => 'App\Repositories\Interfaces\UserRightRepositoryInterface',
+            'repository' => 'App\Repositories\UserRightRepository',
+            'service' => 'App\Services\UserRightService',
+            'model' => [
+                'App\UsersPermissions',
+            ],
+        ),                          
     );
     public function register()
     {

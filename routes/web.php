@@ -20,14 +20,14 @@ use Illuminate\Support\Facades\Route;
 //     return redirect('/login');
 // });
 
-Route::get('/login', 'LoginController@index')->name('login');
-Route::post('login', 'LoginController@login')->name('login'); // login submit
+Route::get('/login', 'Auth\LoginController@index')->name('login');
+Route::post('login', 'Auth\LoginController@login')->name('login'); // login submit
 
 Auth::routes();
 
 Route::group(['middleware' => ['auth']], function () {
 
-    Route::get('logout', 'LoginController@logout')->name('logout');
+    Route::get('logout', 'Auth\LoginController@logout')->name('logout');
 
     // return view('auth.passwords.change', compact('id'));
 
@@ -35,7 +35,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('dashboard', 'HomeController@index')->name('home');
     Route::get('downtime-list', 'HomeController@downtimeList')->name('downtime-list');
     Route::get('genset', 'HomeController@genset')->name('genset');
-    Route::get('assets', 'HomeController@assets')->name('assets');
+    Route::get('EDMS-assets', 'HomeController@assets')->name('EDMS-assets');
 
     Route::get('genset-list', 'GensetController@gensetList')->name('genset-list');
     Route::get('/rpt_genset_utilization', 'GensetController@gensetReport');
@@ -55,8 +55,8 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/rpt_masterlist_print', 'DowntimeController@downtimeReportMasterlistPrint');
     Route::get('/rpt_rawdata_print', 'DowntimeController@downtimeReportRawDataPrint');
     Route::get('/rpt_daily_print', 'DowntimeController@downtimeReportDailyPrint');
-    Route::get('genset', 'HomeController@genset')->name('genset');
-    Route::get('assets', 'HomeController@assets')->name('assets');
+    // Route::get('genset', 'HomeController@genset')->name('genset');
+    // Route::get('assets', 'HomeController@assets')->name('assets');
     Route::get('/asset/new', 'AssetController@newAsset');
     Route::get('/downtime/{id}', 'DowntimeController@editDowntime');
     Route::get('/unit/{id}', 'UnitsController@editUnit');
@@ -113,11 +113,17 @@ Route::group(['middleware' => ['auth']], function () {
             Route::post('/edit', 'PermissionController@edit')->name('admin.permissions.edit');
             Route::put('update', 'PermissionController@update')->name('admin.permissions.update');
         });
-        // //Role Access right routes
-        // Route::group(['prefix' => 'roleaccessrights'], function () {
-        //     Route::get('/', 'RoleRightController@index')->name('admin.roleaccessrights');
-        //     Route::post('store', 'RoleRightController@store')->name('admin.roleaccessrights.store');
-        //     Route::get('store', 'RoleRightController@store')->name('admin.roleaccessrights.store');
-        // });        
+        //Role Access right routes
+        Route::group(['prefix' => 'roleaccessrights'], function () {
+            Route::get('/', 'RoleRightController@index')->name('admin.roleaccessrights');
+            Route::post('store', 'RoleRightController@store')->name('admin.roleaccessrights.store');
+            Route::get('store', 'RoleRightController@store')->name('admin.roleaccessrights.store');
+        }); 
+        //User Access right routes
+        Route::group(['prefix' => 'useraccessrights'], function () {
+            Route::get('/', 'UserRightController@index')->name('admin.useraccessrights');
+            Route::post('store', 'UserRightController@store')->name('admin.useraccessrights.store');
+            Route::get('store', 'UserRightController@store')->name('admin.useraccessrights.store');
+        });               
     });
 });
