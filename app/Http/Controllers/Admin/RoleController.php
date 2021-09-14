@@ -108,7 +108,7 @@ class RoleController extends Controller
         //$pagination = $rolesPermissions['pagination'];
 
         return view('admin.roles', compact(
-            'roles',
+            'roles'
             //'create',
             //'edit',
             //'search',
