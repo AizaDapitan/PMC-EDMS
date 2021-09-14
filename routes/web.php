@@ -88,7 +88,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::delete('/genset/{id}', 'GensetController@deleteGenset');
     Route::delete('/asset/{id}', 'AssetController@deleteAsset');
 
-    Route::group(['namespace' => 'admin'], function () {
+    Route::group(['namespace' => 'Admin'], function () {
         // User routes
         Route::group(['prefix' => 'users'], function () {
             Route::get('/', 'UserController@index')->name('admin.users');
@@ -113,5 +113,11 @@ Route::group(['middleware' => ['auth']], function () {
             Route::post('/edit', 'PermissionController@edit')->name('admin.permissions.edit');
             Route::put('update', 'PermissionController@update')->name('admin.permissions.update');
         });
+        // //Role Access right routes
+        // Route::group(['prefix' => 'roleaccessrights'], function () {
+        //     Route::get('/', 'RoleRightController@index')->name('admin.roleaccessrights');
+        //     Route::post('store', 'RoleRightController@store')->name('admin.roleaccessrights.store');
+        //     Route::get('store', 'RoleRightController@store')->name('admin.roleaccessrights.store');
+        // });        
     });
 });
