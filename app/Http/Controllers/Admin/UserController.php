@@ -41,7 +41,7 @@ class UserController extends Controller
 
         return view('admin.users', compact(
             'roles',
-            'users',
+            'users'
             // 'create',
             // 'edit',
             // 'activateDeactivate',

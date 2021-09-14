@@ -43,7 +43,7 @@ class RoleController extends Controller
         //$roles = Role::paginate(15);
         $roles = Role::all();
         return view('admin.roles', compact(
-            'roles',
+            'roles'
             //'create',
             //'edit',
             //'search',

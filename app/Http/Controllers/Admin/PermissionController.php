@@ -47,7 +47,7 @@ class PermissionController extends Controller
 
         return view('admin.permissions', compact(
             'permissions',
-            'modules',
+            'modules'
             //'create',
             //'edit',
             //'search',
