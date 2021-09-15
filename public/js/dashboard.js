@@ -43,7 +43,7 @@ function refresh_all(){
 	var s_location=$('#s_location').val();
 	var s_type=$('#s_type').val();
 	var s_name=$('#s_name').val();
-    window.location.href = encodeURI("{{env('APP_URL')}}/dashboard?startDate="+start+"&endDate="+end+"&type="+datetype+"&s_location="+s_location+"&s_type="+s_type+"&s_name="+s_name);
+    window.location.href = encodeURI(document.URL + "?startDate="+start+"&endDate="+end+"&type="+datetype+"&s_location="+s_location+"&s_type="+s_type+"&s_name="+s_name);
 
 }
 

@@ -16,7 +16,7 @@ class RepositoryServiceProvider extends ServiceProvider
                 'App\Role',
             ],
         ),
-        
+
         // users
         array(
             'interface' => 'App\Repositories\Interfaces\UserRepositoryInterface',
@@ -36,7 +36,16 @@ class RepositoryServiceProvider extends ServiceProvider
                 'App\Permission',
             ],
         ),
-
+        // Audit
+        array(
+            'interface' => 'App\Repositories\Interfaces\AuditRepositoryInterface',
+            'repository' => 'App\Repositories\AuditRepository',
+            'service' => 'App\Services\AuditService',
+            'model' => [
+                '\OwenIt\Auditing\Models\Audit',
+            ],
+        ),
+        
         // Role Access Rights
         array(
             'interface' => 'App\Repositories\Interfaces\RoleRightRepositoryInterface',
@@ -54,7 +63,25 @@ class RepositoryServiceProvider extends ServiceProvider
             'model' => [
                 'App\UsersPermissions',
             ],
-        ),                          
+        ),    
+        // applications
+        array(
+            'interface' => 'App\Repositories\Interfaces\ApplicationRepositoryInterface',
+            'repository' => 'App\Repositories\ApplicationRepository',
+            'service' => 'App\Services\ApplicationService',
+            'model' => [
+                'App\Application',
+            ],
+        ),                                   
+        // Report
+        array(
+            'interface' => 'App\Repositories\Interfaces\ReportRepositoryInterface',
+            'repository' => 'App\Repositories\ReportRepository',
+            'service' => 'App\Services\ReportService',
+            'model' => [
+                '\OwenIt\Auditing\Models\Audit',
+            ],
+        ),
     );
     public function register()
     {

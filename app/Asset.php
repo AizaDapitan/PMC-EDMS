@@ -3,13 +3,33 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use OwenIt\Auditing\Contracts\Auditable  as AuditableContract;
+use OwenIt\Auditing\Auditable;
 
-class Asset extends Model
+class Asset extends Model implements AuditableContract
 {
+    use Auditable;
 
 	protected $guarded = [];
 	protected $dates = ['commmissioning_date'];
-
+	protected $auditInclude = [
+        'tag', 
+        'asset_type', 
+        'description',
+		'manufacturer',
+		'model',
+		'serial',
+		'year_manufactured',
+		'commissioning_date',
+		'site',
+		'location',
+		'condition',
+		'status',
+		'vendor',
+		'po_reference',
+		'po_value',
+		'is_deleted'
+    ];
 
 
 	public function locations() {

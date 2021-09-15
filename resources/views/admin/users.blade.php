@@ -64,19 +64,19 @@
 
                     <div class="form-group">
                         <label class="control-label">First Name <span class="required" aria-required="true"> * </span></label>
-                        <input type="text" name="firstname" id="firstname" class="form-control" placeholder="Enter first name" required>
+                        <input type="text" name="firstname" id="firstname" class="form-control" placeholder="Enter first name" required maxlength="30">
                     </div>
                     <div class="form-group">
                         <label class="control-label">Last Name <span class="required" aria-required="true"> * </span></label>
-                        <input type="text" class="form-control" name="lastname" id="lastname" placeholder="Enter last name" required>
+                        <input type="text" class="form-control" name="lastname" id="lastname" placeholder="Enter last name" required maxlength="30">
                     </div>
                     <div class="form-group">
                         <label class="control-label">Email Address <span class="required" aria-required="true"> * </span></label>
-                        <input type="email" class="form-control" name="email" id="email" placeholder="Enter email address" required>
+                        <input type="email" class="form-control" name="email" id="email" placeholder="Enter email address" required maxlength="50">
                     </div>
                     <div class="form-group">
                         <label class="control-label">Username <span class="required" aria-required="true"> * </span></label>
-                        <input type="text" class="form-control" name="username" id="username" placeholder="Enter Username" required>
+                        <input type="text" class="form-control" name="username" id="username" placeholder="Enter Username" required maxlength="30">
                     </div>
                     <div class="form-group">
                         <label class="control-label">User Role <span class="required" aria-required="true"> * </span></label>

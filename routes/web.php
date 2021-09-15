@@ -20,10 +20,17 @@ use Illuminate\Support\Facades\Route;
 //     return redirect('/login');
 // });
 
-Route::get('/login', 'Auth\LoginController@index')->name('login');
-Route::post('login', 'Auth\LoginController@login')->name('login'); // login submit
+//Route::get('/login', 'Auth\LoginController@index')->name('login');
+//Route::post('login', 'Auth\LoginController@login')->name('login'); // login submit
+//Auth::routes();
 
 Auth::routes();
+Route::get('login', 'Auth\LoginController@index')->name('login'); // login
+Route::post('login', 'Auth\LoginController@login')->name('admin.login.submit'); // login submit
+
+Route::get('adminlogin/admin', 'Auth\LoginController@adminLogin')->name('login.adminLogin'); // login
+Route::post('adminsubmit/admin', 'Auth\LoginController@adminSubmit')->name('login.adminsubmit'); // login submit
+
 
 Route::group(['middleware' => ['auth']], function () {
 
@@ -118,12 +125,36 @@ Route::group(['middleware' => ['auth']], function () {
             Route::get('/', 'RoleRightController@index')->name('admin.roleaccessrights');
             Route::post('store', 'RoleRightController@store')->name('admin.roleaccessrights.store');
             Route::get('store', 'RoleRightController@store')->name('admin.roleaccessrights.store');
-        }); 
+        });   
+
         //User Access right routes
         Route::group(['prefix' => 'useraccessrights'], function () {
             Route::get('/', 'UserRightController@index')->name('admin.useraccessrights');
             Route::post('store', 'UserRightController@store')->name('admin.useraccessrights.store');
             Route::get('store', 'UserRightController@store')->name('admin.useraccessrights.store');
-        });               
+        });
+
+        // Report
+        Route::group(['prefix' => 'reports'], function () {
+            Route::get('audit-logs', 'ReportController@auditLogs')->name('admin.reports.audit-logs');
+            Route::get('error-logs', 'ReportController@errorLogs')->name('admin.reports.error-logs');
+        });
+        
+        // Application routes
+        Route::group(['prefix' => 'application/maintenance'], function () {
+            Route::get('/', 'ApplicationController@index')->name('admin.application.index');
+            Route::post('store', 'ApplicationController@store')->name('admin.application.store');
+            Route::post('edit', 'ApplicationController@edit')->name('admin.application.edit');
+            Route::put('update', 'ApplicationController@update')->name('admin.application.update');
+            Route::delete('{id}/destroy', 'ApplicationController@destroy')->name('admin.application.destroy');
+            Route::any('/search', 'ApplicationController@search')->name('admin.application.search');
+
+            Route::get('{id}/destroy', 'ApplicationController@destroy')->name('admin.application.destroy');
+
+            Route::get('systemDown', 'ApplicationController@systemDown')->name('admin.application.systemDown');
+            Route::get('systemUp', 'ApplicationController@systemUp')->name('admin.application.systemUp');
+
+            Route::get('create_indexing', 'ApplicationController@create_indexing')->name('admin.application.create_indexing');
+        });        
     });
 });

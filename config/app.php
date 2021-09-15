@@ -161,11 +161,13 @@ return [
         Illuminate\Translation\TranslationServiceProvider::class,
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
+        //OwenIt\Auditing\AuditingServiceProvider::class,
+        //danielme85\LaravelLogToDB\ServiceProvider::class,             
 
         /*
          * Package Service Providers...
          */
-
+        OwenIt\Auditing\AuditingServiceProvider::class,
         /*
          * Application Service Providers...
          */

@@ -5,10 +5,15 @@ namespace App;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use OwenIt\Auditing\Contracts\Auditable  as AuditableContract;
+use OwenIt\Auditing\Contracts\UserResolver;
+use OwenIt\Auditing\Auditable;
+use Illuminate\Support\Facades\Auth;
 
-class User extends Authenticatable
+class User extends Authenticatable  implements AuditableContract, UserResolver
 {
     use Notifiable;
+    use Auditable;
 
     /**
      * The attributes that are mass assignable.
@@ -25,6 +30,20 @@ class User extends Authenticatable
         'role',
         'active',
         'role_id',
+        'firstname',
+        'lastname',
+        'email',
+        'reset',
+    ];
+    protected $auditInclude = [
+        'name', 
+        'username', 
+        'password',
+        'locked',
+        'locked_at',
+        'approver',
+        'role',
+        'active',
         'firstname',
         'lastname',
         'email',
@@ -48,4 +67,8 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+    public static function resolve()
+    {
+        return Auth::check() ? Auth::user()->getAuthIdentifier() : null;
+    }
 }

@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
+use App\Services\AuditService;
 class LoginController extends Controller
 {
     /*
@@ -21,8 +22,10 @@ class LoginController extends Controller
 
     use AuthenticatesUsers;
 
-    public function __construct()
+    public function __construct(
+        AuditService $auditService)
     {
+        $this->auditService = $auditService;
         // $this->middleware('guest')->except('logout');
     }
 
@@ -39,14 +42,42 @@ class LoginController extends Controller
             'active'   => 1,
             'locked'   => 0
         ]);
+
         if ($checker) {
+            $saveLogs = $this->auditService->create($request,"Login User : ". auth()->user()->username,"Login");
             return redirect()->route('home');
         } else {
             return redirect()->back()->withErrors('Invalid login credentials.');
         }
     }
-    public function logout()
+    public function logout(Request $request)
     {
+        $saveLogs = $this->auditService->create($request,"Logout User : ". auth()->user()->username,"Logout");
         return auth()->logout() ?? redirect()->route('login');
+    }
+
+    public function adminLogin()
+    {
+        return view('auth.adminlogin');
+    }
+    public function adminSubmit(Request $request)
+    {
+        $checker = auth()->attempt([
+            'username' => $request->username,
+            'password' => $request->password,
+            'active'   => 1,
+            'locked'   => 0
+        ]);
+        if ($checker) {
+            if(auth()->user()->role == "ADMIN"){
+                return redirect()->route('admin.application.index');
+            }
+            else
+            {
+                abort(503);
+            }
+        } else {
+            return redirect()->back()->withErrors('Invalid login credentials.');
+        }
     }
 }

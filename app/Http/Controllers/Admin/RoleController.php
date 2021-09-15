@@ -37,17 +37,13 @@ class RoleController extends Controller
 
         //$create = $rolesPermissions['create'];
         //$edit = $rolesPermissions['edit'];
-        //$search = $rolesPermissions['search'];
-        //$pagination = $rolesPermissions['pagination'];
 
         //$roles = Role::paginate(15);
         $roles = Role::all();
         return view('admin.roles', compact(
             'roles'
             //'create',
-            //'edit',
-            //'search',
-            //'pagination'
+            //'edit'
         ));
     }
 
@@ -82,8 +78,7 @@ class RoleController extends Controller
 
         //$create = $rolesPermissions['create'];
         //$edit = $rolesPermissions['edit'];
-        //$search = $rolesPermissions['search'];
-        //$pagination = $rolesPermissions['pagination'];
+
 
         $q = $request->get('q');
 
@@ -104,15 +99,11 @@ class RoleController extends Controller
 
         //$create = $rolesPermissions['create'];
         //$edit = $rolesPermissions['edit'];
-        //$search = $rolesPermissions['search'];
-        //$pagination = $rolesPermissions['pagination'];
 
         return view('admin.roles', compact(
             'roles'
             //'create',
-            //'edit',
-            //'search',
-            //'pagination'
+            //'edit'
         ));
     }
 

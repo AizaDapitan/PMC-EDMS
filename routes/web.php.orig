@@ -20,26 +20,29 @@ use Illuminate\Support\Facades\Route;
 //     return redirect('/login');
 // });
 
-Route::get('/login', 'LoginController@index')->name('login');
-Route::post('login', 'LoginController@login')->name('login'); // login submit
+//Route::get('/login', 'Auth\LoginController@index')->name('login');
+//Route::post('login', 'Auth\LoginController@login')->name('login'); // login submit
+//Auth::routes();
 
 Auth::routes();
+Route::get('login', 'Auth\LoginController@index')->name('login'); // login
+Route::post('login', 'Auth\LoginController@login')->name('admin.login.submit'); // login submit
+
+Route::get('adminlogin/admin', 'Auth\LoginController@adminLogin')->name('login.adminLogin'); // login
+Route::post('adminsubmit/admin', 'Auth\LoginController@adminSubmit')->name('login.adminsubmit'); // login submit
+
 
 Route::group(['middleware' => ['auth']], function () {
 
-    Route::get('logout', 'LoginController@logout')->name('logout');
+    Route::get('logout', 'Auth\LoginController@logout')->name('logout');
 
-<<<<<<< HEAD
     // return view('auth.passwords.change', compact('id'));
-=======
-    //return view('auth.passwords.change', compact('id'));
->>>>>>> 7786d221f41196dc19c29174c07d16689af85004
 
     Route::patch('/change-password', 'HomeController@updatePassword');
     Route::get('dashboard', 'HomeController@index')->name('home');
     Route::get('downtime-list', 'HomeController@downtimeList')->name('downtime-list');
     Route::get('genset', 'HomeController@genset')->name('genset');
-    Route::get('assets', 'HomeController@assets')->name('assets');
+    Route::get('EDMS-assets', 'HomeController@assets')->name('EDMS-assets');
 
     Route::get('genset-list', 'GensetController@gensetList')->name('genset-list');
     Route::get('/rpt_genset_utilization', 'GensetController@gensetReport');
@@ -59,8 +62,8 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/rpt_masterlist_print', 'DowntimeController@downtimeReportMasterlistPrint');
     Route::get('/rpt_rawdata_print', 'DowntimeController@downtimeReportRawDataPrint');
     Route::get('/rpt_daily_print', 'DowntimeController@downtimeReportDailyPrint');
-    Route::get('genset', 'HomeController@genset')->name('genset');
-    Route::get('assets', 'HomeController@assets')->name('assets');
+    // Route::get('genset', 'HomeController@genset')->name('genset');
+    // Route::get('assets', 'HomeController@assets')->name('assets');
     Route::get('/asset/new', 'AssetController@newAsset');
     Route::get('/downtime/{id}', 'DowntimeController@editDowntime');
     Route::get('/unit/{id}', 'UnitsController@editUnit');
@@ -92,7 +95,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::delete('/genset/{id}', 'GensetController@deleteGenset');
     Route::delete('/asset/{id}', 'AssetController@deleteAsset');
 
-    Route::group(['namespace' => 'admin'], function () {
+    Route::group(['namespace' => 'Admin'], function () {
         // User routes
         Route::group(['prefix' => 'users'], function () {
             Route::get('/', 'UserController@index')->name('admin.users');
@@ -109,5 +112,48 @@ Route::group(['middleware' => ['auth']], function () {
             Route::post('/edit', 'RoleController@edit')->name('admin.roles.edit');
             Route::put('update', 'RoleController@update')->name('admin.roles.update');
         });
+        // Permission routes
+        Route::group(['prefix' => 'permissions'], function () {
+            Route::get('/', 'PermissionController@index')->name('admin.permissions');
+            Route::post('store', 'PermissionController@store')->name('admin.permissions.store');
+            Route::any('search', 'PermissionController@search')->name('admin.permissions.search');
+            Route::post('/edit', 'PermissionController@edit')->name('admin.permissions.edit');
+            Route::put('update', 'PermissionController@update')->name('admin.permissions.update');
+        });
+
+        // Report
+        Route::group(['prefix' => 'reports'], function () {
+            Route::get('audit-logs', 'ReportController@auditLogs')->name('admin.reports.audit-logs');
+            Route::get('error-logs', 'ReportController@errorLogs')->name('admin.reports.error-logs');
+        });
+        //Role Access right routes
+        Route::group(['prefix' => 'roleaccessrights'], function () {
+            Route::get('/', 'RoleRightController@index')->name('admin.roleaccessrights');
+            Route::post('store', 'RoleRightController@store')->name('admin.roleaccessrights.store');
+            Route::get('store', 'RoleRightController@store')->name('admin.roleaccessrights.store');
+        }); 
+        //User Access right routes
+        Route::group(['prefix' => 'useraccessrights'], function () {
+            Route::get('/', 'UserRightController@index')->name('admin.useraccessrights');
+            Route::post('store', 'UserRightController@store')->name('admin.useraccessrights.store');
+            Route::get('store', 'UserRightController@store')->name('admin.useraccessrights.store');
+        });
+        
+        // Application routes
+        Route::group(['prefix' => 'application/maintenance'], function () {
+            Route::get('/', 'ApplicationController@index')->name('admin.application.index');
+            Route::post('store', 'ApplicationController@store')->name('admin.application.store');
+            Route::post('edit', 'ApplicationController@edit')->name('admin.application.edit');
+            Route::put('update', 'ApplicationController@update')->name('admin.application.update');
+            Route::delete('{id}/destroy', 'ApplicationController@destroy')->name('admin.application.destroy');
+            Route::any('/search', 'ApplicationController@search')->name('admin.application.search');
+
+            Route::get('{id}/destroy', 'ApplicationController@destroy')->name('admin.application.destroy');
+
+            Route::get('systemDown', 'ApplicationController@systemDown')->name('admin.application.systemDown');
+            Route::get('systemUp', 'ApplicationController@systemUp')->name('admin.application.systemUp');
+
+            Route::get('create_indexing', 'ApplicationController@create_indexing')->name('admin.application.create_indexing');
+        });        
     });
 });

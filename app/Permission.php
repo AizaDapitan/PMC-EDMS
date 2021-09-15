@@ -3,12 +3,12 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-//use OwenIt\Auditing\Contracts\Auditable  as AuditableContract;
-//use OwenIt\Auditing\Auditable;
+use OwenIt\Auditing\Contracts\Auditable  as AuditableContract;
+use OwenIt\Auditing\Auditable;
 
-class Permission extends Model //implements AuditableContract
+class Permission extends Model implements AuditableContract
 {
-    //use Auditable;
+    use Auditable;
     //protected $guarded = [];
 
     // use Auditable;
@@ -23,9 +23,9 @@ class Permission extends Model //implements AuditableContract
         'description', 
         'active',
     ];
-    // protected $auditInclude = [
-    //     'module_type', 
-    //     'description', 
-    //     'active',
-    // ];
+    protected $auditInclude = [
+        'module_type', 
+        'description', 
+        'active',
+    ];
 }

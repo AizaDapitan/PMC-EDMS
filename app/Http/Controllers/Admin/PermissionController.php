@@ -38,11 +38,9 @@ class PermissionController extends Controller
 
         // $create = $rolesPermissions['create'];
         // $edit = $rolesPermissions['edit'];
-        // $search = $rolesPermissions['search'];
-        // $pagination = $rolesPermissions['pagination'];
 
         $modules = $this->permissionService->getModule();
-        $permissions = Permission::orderBy('module_type', 'asc')->orderBy('description', 'asc')->get(); //->paginate(15);
+        $permissions = Permission::orderBy('module_type', 'asc')->orderBy('description', 'asc')->get();
         //$permissions = Permission::all();
 
         return view('admin.permissions', compact(
@@ -50,8 +48,6 @@ class PermissionController extends Controller
             'modules'
             //'create',
             //'edit',
-            //'search',
-            //'pagination'
         ));
     }
 
@@ -86,8 +82,6 @@ class PermissionController extends Controller
 
         $create = $rolesPermissions['create'];
         $edit = $rolesPermissions['edit'];
-        $search = $rolesPermissions['search'];
-        $pagination = $rolesPermissions['pagination'];
 
         $modules = $this->permissionService->getModule();        
         $q = $request->get('q');
@@ -105,9 +99,7 @@ class PermissionController extends Controller
             'permissions',
             'modules',
             'create',
-            'edit',
-            'search',
-            'pagination'
+            'edit'
         ));
     }
     public function edit(Request $request)

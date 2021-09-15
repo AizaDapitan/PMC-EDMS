@@ -3,12 +3,12 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-//use OwenIt\Auditing\Contracts\Auditable  as AuditableContract;
-//use OwenIt\Auditing\Auditable;
+use OwenIt\Auditing\Contracts\Auditable  as AuditableContract;
+use OwenIt\Auditing\Auditable;
 
-class Role extends Model
+class Role extends Model implements AuditableContract
 {
-    // use Auditable;
+    use Auditable;
     /**
      * The attributes that are mass assignable.
      *
@@ -20,11 +20,11 @@ class Role extends Model
         'active',
     ];
 
-    // protected $auditInclude = [
-    //     'name', 
-    //     'description', 
-    //     'active',
-    // ];
+    protected $auditInclude = [
+        'name', 
+        'description', 
+        'active',
+    ];
 
     // public function permission()
     // {
