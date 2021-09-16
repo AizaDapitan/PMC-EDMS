@@ -41,9 +41,6 @@
 
 @section('content')
 
-@include('layouts.header')
-
-
 <div class="main">
     <div class="container">
         <div class="col-md-12 tab-style-1">

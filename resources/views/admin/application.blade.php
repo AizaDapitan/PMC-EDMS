@@ -41,8 +41,6 @@
 
 @section('content')
 
-@include('layouts.header')
-
 <div class="modal fade" id="basic" tabindex="-1" role="basic" aria-hidden="true">
     <form id="form" role="form" action="{{ route('admin.application.store') }}" method="POST">
         @csrf

@@ -28,7 +28,7 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         view()->composer(
-            'layouts.header',
+            'layouts.app',
             function ($view) {
                 $reason = "";
                 $scheduledate = "";
