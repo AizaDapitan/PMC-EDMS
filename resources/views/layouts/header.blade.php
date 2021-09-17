@@ -90,7 +90,7 @@
 					</ul>
 				</li>
 
-				<li class="classic-menu-dropdown {{ Request::is('audit-logs*') ? 'active' : '' }}">
+				<li class="classic-menu-dropdown {{ Request::is('audit-logs*') || Request::is('error-logs*') ? 'active' : '' }}">
 					<a data-hover="dropdown" data-close-others="true" data-toggle="dropdown" href="javascript:;">
 						Reports <i class="fa fa-angle-down"></i>
 					</a>
@@ -122,6 +122,10 @@
 						<li>
 							<a href="{{ route('admin.reports.audit-logs') }}">
 								<i class="fa fa-bookmark-o"></i> Audit Logs </a>
+						</li>
+						<li>
+							<a href="{{ route('admin.reports.error-logs') }}">
+								<i class="fa fa-bookmark-o"></i> Error Logs </a>
 						</li>
 
 

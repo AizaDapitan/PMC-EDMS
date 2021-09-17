@@ -76,7 +76,7 @@
 
                     <div class="form-group last">
                         <label class="control-label">Description <span class="required" aria-required="true"> * </span></label>
-                        <input type="text" class="form-control" id="description" name="description" placeholder="Description" required>
+                        <input type="text" class="form-control" id="description" name="description" placeholder="Description" required maxlength="50">
                     </div>
                 </div>
             </div>

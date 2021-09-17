@@ -44,7 +44,17 @@
 		<div class="col-md-12">
 			
 			<div style="margin-left: 50px;"> 
-			<h3 class="page-title"> Downtime List </h3>
+			<!-- <h3 class="page-title"> Downtime List </h3> -->
+
+            <div class="breadcrumbs">                
+                <ol class="breadcrumb">
+                    <li><a href="{{ url('/dashboard') }}">Home</a></li>
+                    <li class="active">Downtime List</li>
+                </ol>
+
+                <h1>Downtime List</h1>
+                
+            </div>			
 			
 			<form method="GET" role="form" action="{{ route('downtime-list') }}">
 			

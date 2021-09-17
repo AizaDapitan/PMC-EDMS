@@ -82,7 +82,17 @@
                 @include('modals.new-genset-modal')
             <!-- end input modal -->    
 			
-			<h3 class="page-title"> EDMS <small>Availability Records</small> </h3>
+			<!-- <h3 class="page-title"> EDMS <small>Availability Records</small> </h3> -->
+            <div class="breadcrumbs">                
+                <ol class="breadcrumb">
+                    <li><a href="{{ url('/dashboard') }}">Home</a></li>
+                    <li class="active">Genset Units</li>
+                </ol>
+
+                <h1>Genset Units</h1>
+                
+            </div>
+
 			
 			<form method="GET" role="form" action="{{ route('genset') }}">
 

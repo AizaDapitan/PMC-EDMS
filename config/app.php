@@ -168,6 +168,7 @@ return [
          * Package Service Providers...
          */
         OwenIt\Auditing\AuditingServiceProvider::class,
+        danielme85\LaravelLogToDB\ServiceProvider::class, 
         /*
          * Application Service Providers...
          */

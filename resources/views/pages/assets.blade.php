@@ -46,7 +46,17 @@
 
 			<form method="GET" action="{{ route('EDMS-assets') }}">
 
-				<h3 class="page-title"> EDMS <small>Asset Management</small> </h3>
+				<!-- <h3 class="page-title"> EDMS <small>Asset Management</small> </h3> -->
+
+				<div class="breadcrumbs">                
+					<ol class="breadcrumb">
+						<li><a href="{{ url('/dashboard') }}">Home</a></li>
+						<li class="active">Assets</li>
+					</ol>
+
+					<h1>Assets</h1>
+					
+				</div>				
 				
 				<ul class="page-breadcrumb breadcrumb">
 					

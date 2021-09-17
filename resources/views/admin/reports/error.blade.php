@@ -2,6 +2,8 @@
 
 @section('pageCSS')
 
+
+<!-- Theme styles START -->
 <link href="{{env('APP_URL')}}/themes/metronic/assets/global/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
 	<link href="{{env('APP_URL')}}/themes/metronic/assets/global/plugins/simple-line-icons/simple-line-icons.min.css" rel="stylesheet" type="text/css"/>
 	<link href="{{env('APP_URL')}}/themes/metronic/assets/global/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
@@ -36,133 +38,101 @@
 	<link href="{{env('APP_URL')}}/themes/metronic/assets/admin/layout/css/custom.css" rel="stylesheet" type="text/css"/>
 	<!-- END BEGIN THEME STYLES -->
 
+<!-- Theme styles END -->
+
 @endsection
-
-
 @section('content')
 
-<div class="modal fade" id="basic" tabindex="-1" role="basic" aria-hidden="true">
-    <form id="form" role="form" action="{{ route('admin.roles.store') }}" method="POST">
-        @csrf
-        <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>          
-            </div>
-            <div class="modal-body">
-                <div class="modal-header">
-                    <h4 class="modal-title" id="titleLabel" name="titleLabel"></h4>
-                </div>          
+@include('layouts.header')
 
-            <input type="hidden" name="_method" id="method" value="POST">
-            <input type="hidden" name="id" id="id" value="">     
-
-            <div class="modal-body">
-                <div class="form-body">
-
-                    <div class="form-group">
-                        <label class="control-label">Status</label>
-                        <input type="checkbox" name="active" id="active">
-                    </div>              
-
-                    <div class="form-group">
-                        <label class="control-label">Name <span class="required" aria-required="true"> * </span></label>
-                        <input type="text" class="form-control" id="role" name="role" placeholder="Role" required maxlength="30">
-                    </div>
-
-                    <div class="form-group last">
-                        <label class="control-label">Description <span class="required" aria-required="true"> * </span></label>
-                        <input type="text" class="form-control" id="description" name="description" placeholder="Description" required maxlength="50">
-                    </div>
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn default" data-dismiss="modal">Close</button>
-                <input type="submit" class="btn blue" value="Save">
-            </div>           
-            
-            </div>
-
-        </div>
-        <!-- /.modal-content -->
-        </div>
-        <!-- /.modal-dialog -->
-    </form>
-</div>
-
+<!-- BEGIN SIDEBAR CONTENT LAYOUT -->
 <div class="main">
     <div class="container">
         <div class="col-md-12 tab-style-1">
-
-            <div class="breadcrumbs">                
+            <!-- BEGIN BREADCRUMBS -->
+            <div class="breadcrumbs">
                 <ol class="breadcrumb">
                     <li><a href="{{ url('/dashboard') }}">Home</a></li>
-                    <li class="active">Roles</li>
+                    <li class="active">Error Logs Report</li>
                 </ol>
 
-                <h1>Roles</h1>
-                
+                <h1>ERROR LOGS REPORT</h1>
             </div>
-            @if(session('errorMesssage'))
-                <div id="errdiv" class="alert alert-danger alert-dismissable">
-                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true"></button>
-                    {!! session('errorMesssage') !!}
+            <!-- END BREADCRUMBS -->
+            <div class="row">
+                <div class="col-md-12">
+                    <!-- BEGIN EXAMPLE TABLE PORTLET-->
+                    <div class="portlet light bordered">
+                        <div class="portlet-title">
+                            <div class="caption font-dark">
+                                <i class="fa fa-user font-dark"></i>
+                                <span class="caption-subject bold uppercase">Records</span>
+                            </div>
+                            <div class="tools"> </div>
+                        </div>
+                        <form action="" method="get">
+                            <div class="actions">
+                                <div class="form-group form-inline" style="display:inline;margin-right:10px">
+                                    <label class="control-label">Date From</label>
+
+
+                                    <div class="input-group input-medium date date-picker" data-date="{{ today() }}" data-date-format="yyyy-mm-dd" data-date-viewmode="years">
+                                        <input type="date" name="dateFrom" id="dateFrom" class="form-control">
+                                        <!-- <span class="input-group-btn">
+                                <button class="btn default" type="button">
+                                    <i class="fa fa-calendar"></i>
+                                </button>
+                            </span> -->
+                                    </div>
+                                    <label class="control-label">Date To</label>
+
+                                    <div class="input-group input-medium date date-picker" data-date="{{ today() }}" data-date-format="yyyy-mm-dd" data-date-viewmode="years">
+                                        <input type="date" name="dateTo" id="dateTo" class="form-control">
+                                        <!-- <span class="input-group-btn">
+                                    <button class="btn default" type="button">
+                                        <i class="fa fa-calendar"></i>
+                                    </button>
+                                </span> -->
+                                    </div>
+                                    <input type="submit" name="filter_submit" class="btn btn-success" value="Filter" />
+                                </div>
+                        </form>
+                        <div class="portlet-body">
+                            <br>
+                            <table class="table table-striped table-hover" id="sample_1">
+                                <thead>
+                                    <tr>
+                                        <th style="width: 10%">ID</th>
+                                        <th style="width: 20%">Message</th>
+                                        <th style="width: 8%">Level</th>
+                                        <th style="width: 8%">Level Name</th>
+                                        <th style="width: 10%">DateTime</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach($errors as $error)
+                                    <tr>
+                                        <td style="width: 10%">{{ $error->id }}</td>
+                                        <td style="width: 20%">{{ $error->message }}</td>
+                                        <td style="width: 8%">{{ $error->level }}</td>
+                                        <td style="width: 10%">{{ $error->level_name  }}</td>
+                                        <td style="width: 10%">{{ $error->datetime  }}</td>
+                                    </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        </div>
+
+                    </div>
+                    <!-- END EXAMPLE TABLE PORTLET-->
                 </div>
-            @endif
-
-            @if(session('success'))
-                <div class="alert alert-success alert-dismissable">
-                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true"></button>
-                    <span class="fa fa-check-square-o"></span>
-                    {!! session('success') !!}
-                </div>
-            @endif
-
-            <form method="POST" action="{{ route('admin.roles.search') }}" class="mb-5">
-                @csrf
-               <a class="btn green" data-toggle="modal" href="#basic" onclick="addRole()"> Add Role </a>
-               
-            </form>
-</br>
-            <table class="table table-striped table-hover" id="sample_1">
-                <thead>
-                    <tr>
-                        <th>Name</th>
-                        <th>Descrtiption</th>
-                        <th>Status</th>
-                        <th>Action</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach ($roles as $role)
-                    <tr>                              
-                        <td>{{ strtoupper($role->name) }}</td>
-                        <td>{{ ($role->description) }}</td>                
-                        <td> 
-                            @if($role->active)
-                            <i class="font-blue"> Active</i>
-                            @else
-                            <i class="font-red"> Inactive</i>
-                            @endif
-                        </td>
-                        
-                        <td class="text-center">              
-                            <button onclick="getRoleDetails({!! $role['id'] !!})" class="btn btn-sm blue btn-outline filter-submit margin-bottom" data-toggle="modal" data-target="#basic">
-                            <i class="fa fa-edit"></i> Edit</button>
-                        </td>                
-
-                    </tr>
-                    @endforeach
-
-                <tbody>
-            </table>
-
+            </div>
+            <!-- END PAGE BASE CONTENT -->
         </div>
     </div>
 </div>
-
-@endsection
-
+<!-- END SIDEBAR CONTENT LAYOUT -->
+@stop
 @section('pageJS')
 <script src="{{env('APP_URL')}}/themes/metronic/assets/global/plugins/jquery-1.11.0.min.js" type="text/javascript"></script>
 	<script src="{{env('APP_URL')}}/themes/metronic/assets/global/plugins/jquery-migrate-1.2.1.min.js" type="text/javascript"></script>
@@ -189,51 +159,33 @@
 	<script src="{{env('APP_URL')}}/themes/metronic/assets/admin/layout/scripts/layout.js" type="text/javascript"></script>
 	<script src="{{env('APP_URL')}}/themes/metronic/assets/admin/layout/scripts/quick-sidebar.js" type="text/javascript"></script>
 	<script src="{{env('APP_URL')}}/js/jquery.table2excel.js"></script>
-	<script type="text/javascript">
-    $(document).ready(function() {
-        document.getElementById('active').checked = true;
+<script type="text/javascript">
+    function getReportDetails() {
+        const dateFrom = urlParams.get('dateFrom')
+        const dateTo = urlParams.get('dateTo')
+        var userid = urlParams.get('userid')
+        if (userid == null) {
+            userid = 0
+        }
+        $('#dateFrom').val(dateFrom);
+        $('#dateTo').val(dateTo);
+        $('#userid').val(userid);
+
+    }
+    $(function() {
+        const queryString = window.location.search;
+        const urlParams = new URLSearchParams(queryString);
+
+        const dateFrom = urlParams.get('dateFrom')
+        const dateTo = urlParams.get('dateTo')
+        var userid = urlParams.get('userid')
+        if (userid == null) {
+            userid = 0
+        }
+        $('#dateFrom').val(dateFrom);
+        $('#dateTo').val(dateTo);
+        $('#userid').val(userid);
     });
 
-      function addRole() {
-                        
-        $("#titleLabel").text(" Create a Role");                        
-        $('#id').val('');
-        $('#role').val('');
-        $('#description').val('');
-        $('#method').val('POST');
-        $('#form').attr('action', '{{ route('admin.roles.store') }}');
-    }
-
-    function getRoleDetails(id) {
-        $.ajax({
-            url: '{!! route('admin.roles.edit') !!}',
-            type: 'POST',
-            async: false,
-            dataType: 'json',
-            data:{
-                _token: '{!! csrf_token() !!}',
-                id: id
-            },
-            success: function(response){
-                $('#cancel').show();
-                if (response.active == "1"){
-                    
-                document.getElementById('active').checked = true;
-                }
-                else
-                {
-                document.getElementById('active').checked = false;
-                }
-
-                $("#titleLabel").text(" Update a Role");
-                $('#role').val(response.name);
-                $('#id').val(id);
-                $('#description').val(response.description);                    
-                $('#method').val('PUT');
-                $('#form').attr('action', '{{ route('admin.roles.update') }}');
-                $('#submit').html('<span class="glyphicon glyphicon-edit"></span> Update');
-            }
-        });
-    }
 </script>
-@endsection
+@stop

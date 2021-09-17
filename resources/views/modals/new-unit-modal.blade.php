@@ -18,7 +18,7 @@
 
 						<label class="col-md-3 control-label" style="text-align:left !important;">Description <span style="color: red;">*</span></label>
 						<div class="col-md-9">
-							<input type="text" class="form-control" required name="name" placeholder="Enter text">			
+							<input type="text" class="form-control" required name="name" placeholder="Description" required maxlength="50">			
 						</div>
 
 					</div>
