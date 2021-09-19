@@ -96,27 +96,27 @@
 					</a>
 					<ul class="dropdown-menu pull-left">
 						<li>
-							<a href="{{ route('rpt_downtimelist') }}" target="_blank">
+							<a href="{{ route('rpt_downtimelist') }}">
 								<i class="fa fa-bookmark-o"></i> Input List</a>
 						</li>
 						<li>
-							<a href="{{ route('rpt_flatdata') }}" target="_blank">
+							<a href="{{ route('rpt_flatdata') }}">
 								<i class="fa fa-bookmark-o"></i> Downtime Report</a>
 						</li>
 						<li>
-							<a href="{{ route('rpt_chart') }}" target="_blank">
+							<a href="{{ route('rpt_chart') }}">
 								<i class="fa fa-bookmark-o"></i> Chart Report</a>
 						</li>
 						<li>
-							<a href="{{ route('rpt_masterlist') }}" target="_blank">
+							<a href="{{ route('rpt_masterlist') }}">
 								<i class="fa fa-bookmark-o"></i> Equipment Master List</a>
 						</li>
 						<li>
-							<a href="{{ route('rpt_rawdata') }}" target="_blank">
+							<a href="{{ route('rpt_rawdata') }}">
 								<i class="fa fa-bookmark-o"></i> Raw Data</a>
 						</li>
 						<li>
-							<a href="{{ route('rpt_daily') }}" target="_blank">
+							<a href="{{ route('rpt_daily') }}">
 								<i class="fa fa-bookmark-o"></i> Daily Up-Time Report</a>
 						</li>
 						<li>
