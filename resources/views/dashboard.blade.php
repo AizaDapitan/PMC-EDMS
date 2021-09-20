@@ -321,10 +321,8 @@
 
                                     @foreach( $val1 as $unit ) 
                                         <tr>
-                                            <!-- <td class="text-center static_width"> <a href="#" onclick="window.open( '{{env('APP_URL')}}/unit/{{$unit->id}}','displayWindow','toolbar=no,scrollbars=yes,width=800,height=600'); return false;" style="color: #000000;"> {{ $unit->name }} </a> </td> -->
-
-                                            <td class="text-center static_width"> <a href="#" onclick="window.open('/unit/{{$unit->id}}','displayWindow','toolbar=no,scrollbars=yes,width=800,height=600'); return false;" style="color: #000000;"> {{ $unit->name }} </a> </td>
-                                                                                        
+                                            <td class="text-center static_width"> <a href="#" onclick="window.open('{{env('APP_URL')}}/unit/{{$unit->id}}','displayWindow','toolbar=no,scrollbars=yes,width=800,height=600'); return false;" style="color: #000000;"> {{ $unit->name }} </a> </td>
+                                                                                                                                    
                                             @foreach( $displayData as $unit_d_data )
 
                                                 @if( $unit_d_data['unit'] == $unit->id )
@@ -417,9 +415,7 @@
                                             <td width="5%">{{ $down->end_date->toFormattedDateString() }} </td>
                                             <td width="65%">{{ $down->remarks }} </td>
                                             <td width="10%">
-                                            <!-- <a href="#" class="btn purple btn-sm" onclick="window.open( '{{ env('APP_URL') }}/downtime/{{$down->id}}','displayWindow','toolbar=no,scrollbars=yes,width=800,height=600'); return false; "     -->
-                                            
-                                                <a href="#" class="btn purple btn-sm" onclick="window.open('/downtime/{{$down->id}}','displayWindow','toolbar=no,scrollbars=yes,width=800,height=600'); return false; "
+                                                <a href="#" class="btn purple btn-sm" onclick="window.open( '{{ env('APP_URL') }}/downtime/{{$down->id}}','displayWindow','toolbar=no,scrollbars=yes,width=800,height=600'); return false; "                                                                                    
                                                     title="Edit Downtime"><i class="fa fa-edit"></i></a>
                                                 <a href="#" class="btn red btn-sm deletedl" data="{{$down->id}}"
                                                     title="Delete Downtime"><i class="fa fa-minus-circle"></i></a>
