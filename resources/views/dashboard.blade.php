@@ -82,12 +82,10 @@
 
             <form method="GET" role="form" action="{{ route('home') }}">
                 <!--- Filter Display -->
-                <ul class="page-breadcrumb breadcrumb">
-                    
+                <ul class="page-breadcrumb breadcrumb">                    
                     <li>                            
                         <a href="#">Filters:</a>                            
                     </li>
-
                     <li>            
                         
                         <input type="hidden" name="startDate" id="hiddenstart" 

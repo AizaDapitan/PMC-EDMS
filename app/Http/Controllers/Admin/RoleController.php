@@ -55,17 +55,27 @@ class RoleController extends Controller
             'description' => 'required',
         ]);
 
-        $status = $request->has('active');
+        $role = Role::where('name', $request->role)->first();
 
-        $role = new Role([
-            'name' => $request->get('role'),
-            'description' => $request->get('description'),
-            'active' => $status
-        ]);
+        if ($role) 
+        {
+            $request->session()->flash('errorMesssage', '<strong>Role Name!</strong> already exists.');                        
+            return redirect()->back();
+        }
+        else
+        {
+            $status = $request->has('active');
 
-        $role->save();
-
-        return back();
+            $role = new Role([
+                'name' => $request->get('role'),
+                'description' => $request->get('description'),
+                'active' => $status
+            ]);
+    
+            $role->save();
+    
+            return back();
+        }
     }
 
     public function search(Request $request)

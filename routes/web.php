@@ -37,20 +37,34 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('logout', 'Auth\LoginController@logout')->name('logout');
 
     // return view('auth.passwords.change', compact('id'));
+    // Route::get('genset', 'HomeController@genset')->name('genset');
+    // Route::get('assets', 'HomeController@assets')->name('assets');    
+    // Route::get('/change-password', function () {
+    //     $id = \Auth::user()->id;
+    //     return view('auth.passwords.change', compact('id'));
+    // });    
 
+    //Home Controller
     Route::patch('/change-password', 'HomeController@updatePassword');
     Route::get('dashboard', 'HomeController@index')->name('home');
     Route::get('downtime-list', 'HomeController@downtimeList')->name('downtime-list');
     Route::get('genset', 'HomeController@genset')->name('genset');
     Route::get('EDMS-assets', 'HomeController@assets')->name('EDMS-assets');
+    Route::patch('/change-password', 'HomeController@updatePassword');
 
+    //Genset Controller
     Route::get('genset-list', 'GensetController@gensetList')->name('genset-list');
     Route::get('/rpt_genset_utilization', 'GensetController@gensetReport');
     Route::get('/genset/{id}', 'GensetController@editGenset');
     Route::post('/genset', 'GensetController@store');
     Route::patch('/genset/{id}', 'GensetController@updateGenset');
     Route::delete('/genset/{id}', 'GensetController@deleteGenset');
+    Route::get('/genset/{id}', 'GensetController@editGenset');
+    Route::post('/genset', 'GensetController@store');
+    Route::patch('/genset/{id}', 'GensetController@updateGenset');
+    Route::delete('/genset/{id}', 'GensetController@deleteGenset');
 
+    //Downtime Controller
     Route::get('rpt_downtimelist', 'DowntimeController@downtimeReport')->name('rpt_downtimelist');
     Route::get('rpt_flatdata', 'DowntimeController@downtimeReportFlatdata')->name('rpt_flatdata');
     Route::get('rpt_chart', 'DowntimeController@downtimeReportChart')->name('rpt_chart');
@@ -62,38 +76,31 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/rpt_masterlist_print', 'DowntimeController@downtimeReportMasterlistPrint');
     Route::get('/rpt_rawdata_print', 'DowntimeController@downtimeReportRawDataPrint');
     Route::get('/rpt_daily_print', 'DowntimeController@downtimeReportDailyPrint');
-    // Route::get('genset', 'HomeController@genset')->name('genset');
-    // Route::get('assets', 'HomeController@assets')->name('assets');
-    Route::get('/asset/new', 'AssetController@newAsset');
-    Route::get('/downtime/{id}', 'DowntimeController@editDowntime');
-    Route::get('/unit/{id}', 'UnitsController@editUnit');
-    Route::get('/genset/{id}', 'GensetController@editGenset');
-    Route::get('/asset/{id}', 'AssetController@editAsset');
-    // Route::get('/change-password', function () {
-    //     $id = \Auth::user()->id;
-    //     return view('auth.passwords.change', compact('id'));
-    // });
-    Route::patch('/change-password', 'HomeController@updatePassword');
-    Route::post('units', 'UnitsController@store')->name('units');
+    Route::get('/downtime/{id}', 'DowntimeController@editDowntime');    
     Route::post('downtime', 'DowntimeController@store')->name('downtime');
-    Route::post('/genset', 'GensetController@store');
-    Route::post('/asset', 'AssetController@store');
     Route::patch('/downtime/{id}', 'DowntimeController@updateDowntime');
-    Route::patch('/unit/{id}', 'UnitsController@updateUnit');
-    Route::patch('/genset/{id}', 'GensetController@updateGenset');
+    Route::delete('/downtime/{id}', 'DowntimeController@deleteDowntime');
+
+    //Asset Controller
     Route::get('/asset/new', 'AssetController@newAsset');
     Route::get('/asset/{id}', 'AssetController@editAsset');
     Route::post('/asset', 'AssetController@store');
+    Route::get('/asset/new', 'AssetController@newAsset');
+    Route::get('/asset/{id}', 'AssetController@editAsset');
+    Route::post('store', 'AssetController@store')->name('pages.asset.store');
+    
+    //Route::post('/asset', 'AssetController@store');
     Route::patch('/asset/{id}', 'AssetController@updateAsset');
+    Route::delete('/asset/{id}', 'AssetController@deleteAsset');    
     Route::delete('/asset/{id}', 'AssetController@deleteAsset');
-
+    
+    //Unit Controller
     Route::get('/unit/{id}', 'UnitsController@editUnit');
     Route::post('units', 'UnitsController@store')->name('units');
     Route::patch('/unit/{id}', 'UnitsController@updateUnit');
-
-    Route::delete('/downtime/{id}', 'DowntimeController@deleteDowntime');
-    Route::delete('/genset/{id}', 'GensetController@deleteGenset');
-    Route::delete('/asset/{id}', 'AssetController@deleteAsset');
+    Route::get('/unit/{id}', 'UnitsController@editUnit');
+    Route::post('units', 'UnitsController@store')->name('units');
+    Route::patch('/unit/{id}', 'UnitsController@updateUnit');
 
     Route::group(['namespace' => 'Admin'], function () {
         // User routes

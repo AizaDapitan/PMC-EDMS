@@ -83,14 +83,17 @@
                         <i class="fa fa-plus"></i>Add New Asset
                     </div>
                     <div class="actions">                               
-                        <a class="btn btn-default btn-sm" href="/assets"><i class="fa fa-bars"></i> Asset List</a>                            
+                        <!-- <a class="btn btn-default btn-sm" href="/assets"><i class="fa fa-bars"></i> Asset List</a> -->
+                        <a class="btn btn-default btn-sm" href="{{ route('EDMS-assets') }}"><i class="fa fa-bars"></i> Asset List</a>
                     </div>                                                                                  
                 </div>
 
                 <div class="portlet-body">
                     <div class="row">
                         <div class="col-md-12">
-                            <form action="/asset" method="post" class="form-horizontal">
+                            <!-- <form action="/asset" method="post" class="form-horizontal"> -->
+
+                            <form id="form" role="form" action="{{ route('pages.asset.store') }}" method="POST">
                                 @csrf
 
                                 <div class="form-group">
@@ -263,7 +266,9 @@
                                 <div class="form-actions fluid">
                                     <div class="col-md-offset-9 col-md-3">
                                         <button type="submit" class="btn green">Create New Asset</button>
-                                        <a class="btn default" href="/assets">Cancel</a>
+                                        <a class="btn default" href="{{ route('EDMS-assets') }}">Cancel</a>
+                                        
+                                        <!-- <a class="btn default" href="/assets">Cancel</a> -->
                                     </div>
                                 </div>
 

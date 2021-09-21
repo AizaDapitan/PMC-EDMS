@@ -130,7 +130,8 @@
 					</li>				
 					<li>
 						<input type="submit" class="btn green btn-sm" value="Go">
-						<a href="{{env('APP_URL')}}/assets" class="btn purple btn-sm" style="color:white;">Reset</a>						
+						<a href="{{ route('EDMS-assets') }}" class="btn purple btn-sm" style="color:white;">Reset</a>
+						<!-- <a href="{{env('APP_URL')}}/assets" class="btn purple btn-sm" style="color:white;">Reset</a> -->
 					</li>
 
 				</ul>
