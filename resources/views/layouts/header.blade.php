@@ -154,8 +154,7 @@
 					</a>
 					<ul class="dropdown-menu pull-left">
 						<li>
-							<a href="{{ route('change-password') }}">
-								<i class="fa"></i> Change Password</a>
+							<a href="{{ route('change-password') }}"><i class="fa"></i> Change Password</a>
 						</li>
 					</ul>
 				</li>

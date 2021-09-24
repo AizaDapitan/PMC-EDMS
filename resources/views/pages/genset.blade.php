@@ -405,7 +405,7 @@
 
 						<div class="btn-arrow-link pull-right">
 
-							<a href="/genset-list" target="_blank">See All Records</a>
+							<a href="{{ route('genset_list') }}">See All Records</a>
 							<i class="icon-arrow-right"></i>
 
 						</div>

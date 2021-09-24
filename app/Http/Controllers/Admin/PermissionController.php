@@ -47,7 +47,7 @@ class PermissionController extends Controller
             'permissions',
             'modules',
             'create',
-            'edit',
+            'edit'
         ));
     }
 

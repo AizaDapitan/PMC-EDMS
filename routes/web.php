@@ -48,18 +48,20 @@ Route::group(['middleware' => ['auth']], function () {
     // Route::patch('/unit/{id}', 'UnitsController@updateUnit');    
 
     //Home Controller
-    Route::patch('/change-password', 'HomeController@updatePassword');
     Route::get('dashboard', 'HomeController@index')->name('home');
     Route::get('downtime-list', 'HomeController@downtimeList')->name('downtime-list');
     Route::get('genset', 'HomeController@genset')->name('genset');
-    Route::get('EDMS-assets', 'HomeController@assets')->name('EDMS-assets');
-    Route::patch('/change-password', 'HomeController@updatePassword');
-    Route::get('/change-password', function () {
+    Route::get('EDMS-assets', 'HomeController@assets')->name('EDMS-assets');    
+    Route::get('/change-password', function () 
+    {
         $id = \Auth::user()->id;
         return view('auth.passwords.change', compact('id'));
     })->name('change-password');
-    Route::patch('/change-password', 'HomeController@updatePassword');    
 
+    Route::post('updatePassword', 'HomeController@updatePassword')->name('auth.updatePassword'); // change password submit      
+
+    //Route::patch('/change-password', 'HomeController@updatePassword');
+        
     //Genset Controller
     Route::get('genset-list', 'GensetController@gensetList')->name('genset-list');
     Route::get('/rpt_genset_utilization', 'GensetController@gensetReport');
@@ -73,6 +75,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::delete('/genset/{id}', 'GensetController@deleteGenset');
     Route::post('/genset', 'GensetController@store');
     Route::delete('/genset/{id}', 'GensetController@deleteGenset');
+    Route::get('genset_list', 'GensetController@gensetList')->name('genset_list');
 
     //Downtime Controller
     Route::get('rpt_downtimelist', 'DowntimeController@downtimeReport')->name('rpt_downtimelist');

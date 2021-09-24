@@ -53,7 +53,83 @@
 
 	<div class="row ">
 
-		<div class="col-md-6 col-sm-12 col-md-offset-3">
+            <div class="col-md-12">
+
+                <div style="width: 550px; display: block; margin: 100px auto 0; background: #636e68; padding: 30px;">
+                   
+                        <!-- <form method="POST" action="/admin/change-password" role="form"> -->
+                        <form action="{{ route('auth.updatePassword') }}" method="post">
+                            <!-- @csrf 
+                            @method('PATCH') -->
+
+                            {!! csrf_field() !!}
+       
+                            @foreach ($errors->all() as $error)
+                                <p class="text-warning" style="color: yellow;">{{ $error }}</p>
+                            @endforeach 
+
+                            @if(session()->has('error_message')) 
+
+                                <p class="text-warning" style="color: yellow;">{{ session()->get('error_message') }}</p>
+                            
+                            @endif
+
+                            @if(Session::has('success'))
+                                <div class="alert alert-success" style="color: yellow;">
+                                    {{Session::get('success')}}
+                                </div>
+                            @endif 
+
+                            <div class="form-group row">
+                                <label for="password" class="col-md-4 col-form-label text-md-right" 
+                                    style="color: #ffffff;">Current Password</label>
+    
+                                <div class="col-md-8">
+                                    <input id="password" type="password" class="form-control" name="current_password" autocomplete="current-password">
+                                </div>
+                            </div>
+    
+                            <div class="form-group row">
+                                <label for="password" class="col-md-4 col-form-label text-md-right" 
+                                    style="color: #ffffff;">New Password</label>
+    
+                                <div class="col-md-8">
+                                    <input id="new_password" type="password" class="form-control" name="new_password" autocomplete="current-password">
+                                </div>
+                            </div>
+
+                            <div class="form-group row mb-0 text-center">
+                                <div class="col-md-12">
+                                    <label class="control-label"></label><i class="font-red" style="font-size: 16px;font-weight:bold;">(Min. 8, alphanumeric, at least 1 upper case, 1 number and 1 special character) </i>
+                                </div>
+                            </div>                        
+    
+                            <div class="form-group row">
+                                <label for="password" class="col-md-4 col-form-label text-md-right" 
+                                    style="color: #ffffff;">New Confirm Password</label>
+        
+                                <div class="col-md-8">
+                                    <input id="new_confirm_password" type="password" class="form-control" name="new_confirm_password" autocomplete="current-password">
+                                </div>
+                            </div>
+                            
+                            <div class="form-group row mb-0 text-center">
+                                <div class="col-md-12">
+                                    <button type="submit" class="btn btn-primary">
+                                        Update Password
+                                    </button>
+                                </div>
+                            </div>
+                        
+                        </form>
+
+                        <a href="{{ url('/dashboard') }}" class="btn btn-default"> << Back </a>
+
+                    </div>
+                </div>
+            </div>	
+
+		<!-- <div class="col-md-6 col-sm-12 col-md-offset-3">
 
 			<form method="POST" action="/change-password" role="form">
                 @csrf 
@@ -102,7 +178,7 @@
 
             </form>
 
-		</div>		
+		</div>		 -->
 				
 	</div>
 

@@ -438,7 +438,7 @@
 
                     <div class="scroller-footer">
                         <div class="btn-arrow-link pull-right">
-                            <a href="/downtime-list" target="_blank">See All Records</a>
+                            <a href="{{ route('downtime-list') }}">See All Records</a>
                             <i class="icon-arrow-right"></i>
                         </div>
                     </div>
