@@ -64,11 +64,11 @@
                         <label class="control-label">Date</label><i class="font-red"> *</i>
                         <div class="input-group input-medium date date-picker" data-date="{{ today() }}" data-date-format="yyyy-mm-dd" data-date-viewmode="years">
                             <input required type="date" name="scheduled_date" id="scheduled_date" class="form-control">
-                            <span class="input-group-btn">
+                            <!-- <span class="input-group-btn">
                                 <button class="btn default" type="button">
                                     <i class="fa fa-calendar"></i>
                                 </button>
-                            </span>
+                            </span> -->
                         </div>                                             
                   </div>              
 
@@ -126,9 +126,13 @@
                 </div>
             @endif
 
-            <form method="POST" action="{{ route('admin.application.search') }}" class="mb-5">
+        <form method="POST" action="{{ route('admin.application.search') }}" class="mb-5">
                 @csrf
-               <a class="btn green" data-toggle="modal" href="#basic" onclick="addSchedule()"> Create a Scheduled Shutdown </a>
+                @if($create)
+                    <a class="btn green" data-toggle="modal" href="#basic" onclick="addSchedule()"> Create a Scheduled Shutdown </a>
+                @else
+                    <button class="btn green" disabled> Create a Scheduled Shutdown </button>
+                @endif
                
             </form>
 
@@ -167,14 +171,12 @@
                         <td class="text-center">
                             @if($edit)
                                 <a onclick="getApplicationDetails({!! $application['id'] !!})" data-toggle="modal" data-target="#basic"  class="btn btn-sm blue btn-outline filter-submit margin-bottom"><i class="fa fa-edit"></i> Edit</a>
+                                <a data-toggle="modal"  class="btn btn-sm red btn-outline filter-submit margin-bottom" href="#remove{{ $application['id' ]}}"><span class="fa fa-trash-o"></span> Remove</a>
                             @else
-                                <a class="btn btn-circle grey"><i class="fa fa-edit"></i> Edit</a>
+                                <button disabled class="btn btn-sm blue btn-outline filter-submit margin-bottom"><i class="fa fa-edit"></i> Edit</button>
+                                <button disabled class="btn btn-sm red btn-outline filter-submit margin-bottom"><span class="fa fa-trash-o"></span> Remove</button>
                             @endif
-                            @if($edit)
-                            <a data-toggle="modal"  class="btn btn-sm red btn-outline filter-submit margin-bottom" href="#remove{{ $application['id' ]}}"><span class="fa fa-trash-o"></span> Remove</a>
-                            @else
-                            <a class="btn btn-circle grey"><span class="fa fa-trash-o"></span> Remove</a>
-                            @endif
+                            
                         </td>               
 
                     </tr>

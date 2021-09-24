@@ -43,6 +43,9 @@ Route::group(['middleware' => ['auth']], function () {
     //     $id = \Auth::user()->id;
     //     return view('auth.passwords.change', compact('id'));
     // });    
+    //Route::patch('/unit/{id}', 'UnitsController@updateUnit');
+    // Route::post('units', 'UnitsController@store')->name('units');
+    // Route::patch('/unit/{id}', 'UnitsController@updateUnit');    
 
     //Home Controller
     Route::patch('/change-password', 'HomeController@updatePassword');
@@ -51,6 +54,11 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('genset', 'HomeController@genset')->name('genset');
     Route::get('EDMS-assets', 'HomeController@assets')->name('EDMS-assets');
     Route::patch('/change-password', 'HomeController@updatePassword');
+    Route::get('/change-password', function () {
+        $id = \Auth::user()->id;
+        return view('auth.passwords.change', compact('id'));
+    })->name('change-password');
+    Route::patch('/change-password', 'HomeController@updatePassword');    
 
     //Genset Controller
     Route::get('genset-list', 'GensetController@gensetList')->name('genset-list');
@@ -61,7 +69,9 @@ Route::group(['middleware' => ['auth']], function () {
     Route::delete('/genset/{id}', 'GensetController@deleteGenset');
     Route::get('/genset/{id}', 'GensetController@editGenset');
     Route::post('/genset', 'GensetController@store');
-    Route::patch('/genset/{id}', 'GensetController@updateGenset');
+    Route::patch('/genset/{id}', 'GensetController@updateGenset')->name('updateGenset');
+    Route::delete('/genset/{id}', 'GensetController@deleteGenset');
+    Route::post('/genset', 'GensetController@store');
     Route::delete('/genset/{id}', 'GensetController@deleteGenset');
 
     //Downtime Controller
@@ -76,32 +86,27 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/rpt_masterlist_print', 'DowntimeController@downtimeReportMasterlistPrint');
     Route::get('/rpt_rawdata_print', 'DowntimeController@downtimeReportRawDataPrint');
     Route::get('/rpt_daily_print', 'DowntimeController@downtimeReportDailyPrint');
-    Route::get('/downtime/{id}', 'DowntimeController@editDowntime');    
+    Route::get('/downtime/{id}', 'DowntimeController@editDowntime');
     Route::post('downtime', 'DowntimeController@store')->name('downtime');
-    Route::patch('/downtime/{id}', 'DowntimeController@updateDowntime');
+    Route::patch('/downtime/{id}', 'DowntimeController@updateDowntime')->name('updateDowntime');
     Route::delete('/downtime/{id}', 'DowntimeController@deleteDowntime');
 
     //Asset Controller
     Route::get('/asset/new', 'AssetController@newAsset');
     Route::get('/asset/{id}', 'AssetController@editAsset');
+    Route::post('/asset', 'AssetController@store')->name('pages.asset.store');;
+    Route::patch('/asset/{id}', 'AssetController@updateAsset')->name('updateAsset');
+    Route::delete('/asset/{id}', 'AssetController@deleteAsset');
     Route::post('/asset', 'AssetController@store');
-    Route::get('/asset/new', 'AssetController@newAsset');
-    Route::get('/asset/{id}', 'AssetController@editAsset');
-    Route::post('store', 'AssetController@store')->name('pages.asset.store');
-    
-    //Route::post('/asset', 'AssetController@store');
-    Route::patch('/asset/{id}', 'AssetController@updateAsset');
-    Route::delete('/asset/{id}', 'AssetController@deleteAsset');    
     Route::delete('/asset/{id}', 'AssetController@deleteAsset');
     
     //Unit Controller
     Route::get('/unit/{id}', 'UnitsController@editUnit');
-    Route::post('units', 'UnitsController@store')->name('units');
-    Route::patch('/unit/{id}', 'UnitsController@updateUnit');
+    Route::post('units', 'UnitsController@store')->name('units');    
     Route::get('/unit/{id}', 'UnitsController@editUnit');
     Route::post('units', 'UnitsController@store')->name('units');
-    Route::patch('/unit/{id}', 'UnitsController@updateUnit');
-
+    Route::patch('/unit/{id}', 'UnitsController@updateUnit')->name('updateUnit');
+                
     Route::group(['namespace' => 'Admin'], function () {
         // User routes
         Route::group(['prefix' => 'users'], function () {
@@ -111,6 +116,7 @@ Route::group(['middleware' => ['auth']], function () {
             Route::post('/edit', 'UserController@edit')->name('admin.users.edit');
             Route::put('update', 'UserController@update')->name('admin.users.update');
         });
+
         // Roles routes
         Route::group(['prefix' => 'roles'], function () {
             Route::get('/', 'RoleController@index')->name('admin.roles');
@@ -119,6 +125,7 @@ Route::group(['middleware' => ['auth']], function () {
             Route::post('/edit', 'RoleController@edit')->name('admin.roles.edit');
             Route::put('update', 'RoleController@update')->name('admin.roles.update');
         });
+
         // Permission routes
         Route::group(['prefix' => 'permissions'], function () {
             Route::get('/', 'PermissionController@index')->name('admin.permissions');
@@ -127,6 +134,7 @@ Route::group(['middleware' => ['auth']], function () {
             Route::post('/edit', 'PermissionController@edit')->name('admin.permissions.edit');
             Route::put('update', 'PermissionController@update')->name('admin.permissions.update');
         });
+
         //Role Access right routes
         Route::group(['prefix' => 'roleaccessrights'], function () {
             Route::get('/', 'RoleRightController@index')->name('admin.roleaccessrights');
@@ -155,12 +163,9 @@ Route::group(['middleware' => ['auth']], function () {
             Route::put('update', 'ApplicationController@update')->name('admin.application.update');
             Route::delete('{id}/destroy', 'ApplicationController@destroy')->name('admin.application.destroy');
             Route::any('/search', 'ApplicationController@search')->name('admin.application.search');
-
             Route::get('{id}/destroy', 'ApplicationController@destroy')->name('admin.application.destroy');
-
             Route::get('systemDown', 'ApplicationController@systemDown')->name('admin.application.systemDown');
             Route::get('systemUp', 'ApplicationController@systemUp')->name('admin.application.systemUp');
-
             Route::get('create_indexing', 'ApplicationController@create_indexing')->name('admin.application.create_indexing');
         });        
     });

@@ -122,6 +122,7 @@
                                         <th>View</th>
                                         <th>Create</th>
                                         <th>Update</th>
+                                        <th>Delete</th>
                                         <th>Print</th>
                                         <th>Upload</th>
                                     </tr>
@@ -158,6 +159,16 @@
                                             <div class="md-checkbox custom-padding">
                                                 <input type="checkbox" class="md-check" data-role="{{$module['id']}}_edit" data-module="{{$module['id']}}_edit" id="{{$module['id']}}_edit" onclick="checkPermission(this.id)">
                                                 <label for="{{$module['id']}}_edit">
+                                                    <span></span>
+                                                    <span class="check"></span>
+                                                    <span class="box"></span>
+                                                </label>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="md-checkbox custom-padding">
+                                                <input type="checkbox" class="md-check" data-role="{{$module['id']}}_delete" data-module="{{$module['id']}}_delete" id="{{$module['id']}}_delete" onclick="checkPermission(this.id)">
+                                                <label for="{{$module['id']}}_delete">
                                                     <span></span>
                                                     <span class="check"></span>
                                                     <span class="box"></span>
@@ -215,6 +226,16 @@
                                             <div class="md-checkbox">
                                                 <input type="checkbox" class="md-check" data-role="{{$permission['id']}}_{{$module['id']}}_edit" data-module="{{$permission['id']}}_{{$module['id']}}_edit" id="{{$permission['id']}}_{{$module['id']}}_edit" onchange="storeID(this.id)">
                                                 <label for="{{$permission['id']}}_{{$module['id']}}_edit">
+                                                    <span></span>
+                                                    <span class="check"></span>
+                                                    <span class="box"></span>
+                                                </label>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="md-checkbox">
+                                                <input type="checkbox" class="md-check" data-role="{{$permission['id']}}_{{$module['id']}}_delete" data-module="{{$permission['id']}}_{{$module['id']}}_delete" id="{{$permission['id']}}_{{$module['id']}}_delete" onchange="storeID(this.id)">
+                                                <label for="{{$permission['id']}}_{{$module['id']}}_delete">
                                                     <span></span>
                                                     <span class="check"></span>
                                                     <span class="box"></span>

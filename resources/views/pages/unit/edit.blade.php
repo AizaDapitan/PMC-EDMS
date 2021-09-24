@@ -75,7 +75,7 @@
 
     <div class="col-md-6 col-sm-12">
         
-        <form role="FORM" method="POST" action="/unit/{{$unit_selected->id}}">
+        <form role="FORM" method="POST" action="{{ route('updateUnit', $unit_selected['id']) }}" class="form-horizontal">        
             @csrf
             @method('PATCH')
 
@@ -131,8 +131,13 @@
                 </select>
 
             </div>
+            @if($edit)
+                <button class="btn btn-primary"> Update Unit </button>
+            @else
+                <button class="btn btn-primary" disabled> Update Unit </button>
+            @endif
 
-            <button class="btn btn-primary"> Update Unit </button>
+            <input type="button" value="Cancel" class="btn default" onclick="RefreshParent()" />
 
         </form>
 
@@ -183,5 +188,16 @@
     <script src="{{env('APP_URL')}}/themes/metronic/assets/admin/layout/scripts/quick-sidebar.js" type="text/javascript"></script>
     <script src="{{env('APP_URL')}}/themes/metronic/assets/admin/pages/scripts/index.js" type="text/javascript"></script>
     <script src="{{env('APP_URL')}}/themes/metronic/assets/admin/pages/scripts/components-pickers.js"></script>
+
+    <script type="text/javascript">
+        function RefreshParent() 
+        {
+            if (window.opener != null && !window.opener.closed) {
+                window.opener.location.reload();
+                close();
+            }
+        }
+        window.onbeforeunload = RefreshParent;        
+    </script>    
 
 @endsection

@@ -188,8 +188,17 @@
 							</td>
 							<td width="30%">{{ $down->remarks }}</td>
 							<td >
-								<a href="#" class="btn purple btn-sm" onclick="window.open('{{env('APP_URL')}}/downtime/{{$down->id}}','displayWindow','toolbar=no,scrollbars=yes,width=800,height=600'); return false; " title="Edit Downtime"><i class="fa fa-edit"></i></a>
-                                <a href="#" class="btn red btn-sm deletedl" data="{{$down->id}}" title="Delete Downtime"><i class="fa fa-minus-circle"></i></a>
+								@if($edit)
+									<a href="#" class="btn purple btn-sm" onclick="window.open('{{env('APP_URL')}}/downtime/{{$down->id}}','displayWindow','toolbar=no,scrollbars=yes,width=800,height=600'); return false; " title="Edit Downtime"><i class="fa fa-edit"></i></a>
+                              	@else
+									<button class="btn purple btn-sm" disabled ><i class="fa fa-edit"></i></button>
+                                @endif
+								
+								@if($delete)
+									<a href="#" class="btn red btn-sm deletedl" data="{{$down->id}}" title="Delete Downtime"><i class="fa fa-minus-circle"></i></a>
+								@else
+									<button class="btn red btn-sm" disabled><i class="fa fa-minus-circle"></i></button>
+								@endif
 							</td>
 						</tr>
 					@php $ctr++; @endphp

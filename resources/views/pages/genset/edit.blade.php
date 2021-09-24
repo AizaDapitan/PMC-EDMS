@@ -73,9 +73,8 @@
 
     </div>
 
-    <div class="col-md-6 col-sm-12">
-        
-        <form role="FORM" method="POST" action="/genset/{{$genset->id}}">
+    <div class="col-md-6 col-sm-12">        
+        <form  action="{{ route('updateGenset', $genset['id']) }}" method="post" class="form-horizontal">
             @csrf
             @method('PATCH')
 
@@ -167,6 +166,7 @@
 
         
             <button class="btn btn-primary"> Update Genset </button>
+            <input type="button" value="Cancel" class="btn default" onclick="RefreshParent()" />
 
         </form>
 
@@ -233,5 +233,16 @@
         });
 
     </script>
+
+    <script type="text/javascript">
+        function RefreshParent() 
+        {
+            if (window.opener != null && !window.opener.closed) {
+                window.opener.location.reload();
+                close();
+            }
+        }
+        window.onbeforeunload = RefreshParent;        
+    </script>    
     
 @endsection

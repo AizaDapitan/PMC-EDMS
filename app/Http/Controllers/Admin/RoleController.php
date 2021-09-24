@@ -6,19 +6,19 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Role;
 use App\Services\RoleService;
-//use App\Services\RoleRightService;
+use App\Services\RoleRightService;
 
 class RoleController extends Controller
 {
     private $roleService;
 
     public function __construct(
-        RoleService $roleService
-        //RoleRightService $roleRightService
+        RoleService $roleService,
+        RoleRightService $roleRightService
     ) {
 
         $this->roleService = $roleService;
-        //$this->roleRightService = $roleRightService;
+        $this->roleRightService = $roleRightService;
     }
 
     /**
@@ -29,21 +29,21 @@ class RoleController extends Controller
     public function index()
     {
         //$role = auth()->user()->role;
-        //$rolesPermissions = $this->roleRightService->hasPermissions("Roles Maintenance");
+        $rolesPermissions = $this->roleRightService->hasPermissions("Roles Maintenance");
 
-        //if (!$rolesPermissions['view']) {
-        //    abort(401);
-        //}
+        if (!$rolesPermissions['view']) {
+           abort(401);
+        }
 
-        //$create = $rolesPermissions['create'];
-        //$edit = $rolesPermissions['edit'];
+        $create = $rolesPermissions['create'];
+        $edit = $rolesPermissions['edit'];
 
         //$roles = Role::paginate(15);
         $roles = Role::all();
         return view('admin.roles', compact(
-            'roles'
-            //'create',
-            //'edit'
+            'roles',
+            'create',
+            'edit'
         ));
     }
 

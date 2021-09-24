@@ -124,7 +124,11 @@
 
             <form method="POST" action="{{ route('admin.permissions.search') }}" class="mb-5">
                 @csrf
-               <a class="btn green" data-toggle="modal" href="#basic" onclick="addPermission()"> Add Permission </a>
+                @if($create)
+                    <a class="btn green" data-toggle="modal" href="#basic" onclick="addPermission()"> Add Permission </a>
+                @else
+                    <button class="btn green" disabled> Add Permission </button>
+                @endif
                
             </form>
             </br>
@@ -150,9 +154,14 @@
                             @endif
                         </td>
                         
-                        <td class="text-center">                                           
-                            <button onclick="getPermissionDetails({!! $permission['id'] !!})" class="btn btn-sm blue btn-outline filter-submit margin-bottom" data-toggle="modal" data-target="#basic">
-                            <i class="fa fa-edit"></i> Edit</button>
+                        <td class="text-center"> 
+                            @if($edit)                                          
+                                <button onclick="getPermissionDetails({!! $permission['id'] !!})" class="btn btn-sm blue btn-outline filter-submit margin-bottom" data-toggle="modal" data-target="#basic">
+                                <i class="fa fa-edit"></i> Edit</button>
+                            @else
+                                <button disabled class="btn btn-sm blue btn-outline filter-submit margin-bottom" >
+                                <i class="fa fa-edit"></i> Edit</button>
+                            @endif
                         </td>                
 
                     </tr>

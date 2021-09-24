@@ -9,10 +9,16 @@ use App\GensetUtilization;
 use Illuminate\Http\Request;
 use App\GensetUtilizationFlatdata;
 use Illuminate\Pagination\LengthAwarePaginator;
+use App\Services\RoleRightService;
 
 class GensetController extends Controller
 {
-
+	public function __construct(
+        RoleRightService $roleRightService
+    ) {
+        // $this->middleware('auth');
+        $this->roleRightService = $roleRightService;
+    }
 
 	public function store(Request $request) {
 
@@ -162,6 +168,10 @@ class GensetController extends Controller
 
 	public function gensetReport(Request $request) {
 
+		$rolesPermissions = $this->roleRightService->hasPermissions("Daily Utilization Report");
+        if (!$rolesPermissions['view']) {
+            abort(401);
+        }
 		$displayDate            = [];
         $displayData            = [];
         $endDate                = $request->has('enddate') ? Carbon::parse($request->enddate) : Carbon::now();
@@ -370,6 +380,10 @@ class GensetController extends Controller
 
 	public function gensetList(Request $request) {
 
+        $rolesPermissions = $this->roleRightService->hasPermissions("Download Raw Data");
+        if (!$rolesPermissions['view']) {
+            abort(401);
+        }
 		// $endDate        = $request->has('endDate') ? Carbon::parse($request->endDate) : Carbon::now();
   //       $startDate      = $request->has('startDate') ? Carbon::parse($request->startDate) : Carbon::now()->subMonth();
         $type           = $request->has('type') ? $request->type : 'weekly'; 

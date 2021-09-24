@@ -182,7 +182,11 @@
 		<div class="col-md-12">
 
 			<div class=" pull-right">
-				<a data-toggle="modal" href="#gensetdowntime" class="btn yellow-casablanca">Add Genset Run Time</a>	
+			@if($createRuntime)
+					<a data-toggle="modal" href="#gensetdowntime" class="btn yellow-casablanca">Add Genset Run Time</a>	
+				@else
+					<button disabled class="btn yellow-casablanca">Add Genset Run Time</button>	
+				@endif
 				<a href="{{env('APP_URL')}}/rpt_genset_utilization" target="blank" class="btn blue-madison">Daily Utilization Report</a>
 				<a href="{{env('APP_URL')}}/genset-list" id="dl_raw_genset" class="btn purple">Download Raw Data</a>
 			</div>	

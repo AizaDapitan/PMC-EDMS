@@ -145,10 +145,19 @@
 		<!-- END RESPONSIVE MENU TOGGLER -->
 		<!-- BEGIN TOP NAVIGATION MENU -->
 		<div class="top-menu">
-			<ul class="nav navbar-nav pull-right">
+			<ul class="nav navbar-nav pull-left">
 				<!-- BEGIN USER LOGIN DROPDOWN -->
-				<li class="dropdown dropdown-quick-sidebar-toggler" style="color:white;">
-					<br>{{ Auth::user()->name }}
+				<li class="classic-menu-dropdown">
+					
+					<a data-hover="dropdown" data-close-others="true" data-toggle="dropdown" href="javascript:;">
+					{{ Auth::user()->name }} <i class="fa fa-gear"></i>
+					</a>
+					<ul class="dropdown-menu pull-left">
+						<li>
+							<a href="{{ route('change-password') }}">
+								<i class="fa"></i> Change Password</a>
+						</li>
+					</ul>
 				</li>
 				<!-- END USER LOGIN DROPDOWN -->
 				<!-- BEGIN QUICK SIDEBAR TOGGLER -->

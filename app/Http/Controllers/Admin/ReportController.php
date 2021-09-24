@@ -8,17 +8,18 @@ use Illuminate\Http\Request;
 use \OwenIt\Auditing\Models\Audit;
 use App\Services\ReportService;
 use App\Services\UserService;
+use App\Services\RoleRightService;
 use App\Log;
 
 class ReportController extends Controller
 {
     public function __construct(
-        // RoleRightService $roleRightService,
+        RoleRightService $roleRightService,
         ReportService $reportService,
         UserService $userService
     ) {
         $this->reportService = $reportService;
-        // $this->roleRightService = $roleRightService;
+        $this->roleRightService = $roleRightService;
         $this->userService = $userService;
     }
     public function auditLogs(Request $request)
@@ -35,12 +36,12 @@ class ReportController extends Controller
         if (isset($request->userid)) {
             $userid = $request->userid;
         }
-        // $rolesPermissions = $this->roleRightService->hasPermissions("Audit Logs");
-
+        $rolesPermissions = $this->roleRightService->hasPermissions("Audit Logs");
+        if (!$rolesPermissions['view']) {
+            abort(401);
+        }
         $users =  $this->userService->all()->where('active', '1')->where('username', '<>', '')->sortBy('name');
-        // if (!$rolesPermissions['view']) {
-        //     abort(401);
-        // }
+
 
         $audits =Audit::when(isset($dateTo), function($q) use($dateFrom, $dateTo){
             $q->whereBetween('created_at',  [$dateFrom.' 00:00:00', $dateTo.' 23:59:59']);
@@ -60,7 +61,7 @@ class ReportController extends Controller
     }
      public function errorLogs(Request $request)
     {
-        // $rolesPermissions = $this->roleRightService->hasPermissions("Error Logs");
+        $rolesPermissions = $this->roleRightService->hasPermissions("Error Logs");
         $dateFrom = now()->toDateString();
         $dateTo = now()->toDateString();
         if (isset($request->dateFrom)) {
@@ -70,9 +71,9 @@ class ReportController extends Controller
             $dateTo = $request->dateTo;
         }
 
-        // if (!$rolesPermissions['view']) {
-        //     abort(401);
-        // }
+        if (!$rolesPermissions['view']) {
+            abort(401);
+        }
 
         $errors = Log::when(isset($dateTo), function($q) use($dateFrom, $dateTo){
             $q->whereBetween('created_at', [$dateFrom.' 00:00:00', $dateTo.' 23:59:59']);

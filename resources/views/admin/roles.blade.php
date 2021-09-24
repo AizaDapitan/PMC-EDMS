@@ -120,8 +120,11 @@
 
             <form method="POST" action="{{ route('admin.roles.search') }}" class="mb-5">
                 @csrf
+            @if($create)
                <a class="btn green" data-toggle="modal" href="#basic" onclick="addRole()"> Add Role </a>
-               
+            @else
+               <button class="btn green" disabled> Add Role </button>
+            @endif
             </form>
 </br>
             <table class="table table-striped table-hover" id="sample_1">
@@ -147,8 +150,13 @@
                         </td>
                         
                         <td class="text-center">              
-                            <button onclick="getRoleDetails({!! $role['id'] !!})" class="btn btn-sm blue btn-outline filter-submit margin-bottom" data-toggle="modal" data-target="#basic">
-                            <i class="fa fa-edit"></i> Edit</button>
+                            @if($edit)
+                                <button onclick="getRoleDetails({!! $role['id'] !!})" class="btn btn-sm blue btn-outline filter-submit margin-bottom" data-toggle="modal" data-target="#basic">
+                                <i class="fa fa-edit"></i> Edit</button>
+                            @else
+                                <button disabled class="btn btn-sm blue btn-outline filter-submit margin-bottom" >
+                                <i class="fa fa-edit"></i> Edit</button>
+                            @endif
                         </td>                
 
                     </tr>

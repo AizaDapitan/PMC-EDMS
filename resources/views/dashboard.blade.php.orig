@@ -413,9 +413,14 @@
                                             <td width="5%">{{ $down->end_date->toFormattedDateString() }} </td>
                                             <td width="65%">{{ $down->remarks }} </td>
                                             <td width="10%">
-                                                @if($editDowntime)
+<<<<<<< HEAD
+                                            <!-- <a href="#" class="btn purple btn-sm" onclick="window.open( '{{ env('APP_URL') }}/downtime/{{$down->id}}','displayWindow','toolbar=no,scrollbars=yes,width=800,height=600'); return false; "     -->
+                                            @if($editDowntime)
+                                                <a href="#" class="btn purple btn-sm" onclick="window.open('/downtime/{{$down->id}}','displayWindow','toolbar=no,scrollbars=yes,width=800,height=600'); return false; "
+=======
                                                 <a href="#" class="btn purple btn-sm" onclick="window.open( '{{ env('APP_URL') }}/downtime/{{$down->id}}','displayWindow','toolbar=no,scrollbars=yes,width=800,height=600'); return false; "                                                                                    
-                                               title="Edit Downtime"><i class="fa fa-edit"></i></a>
+>>>>>>> 771b21f362bd76a2ff0fef88172bcc727061bc8c
+                                                    title="Edit Downtime"><i class="fa fa-edit"></i></a>
                                             @else
                                                 <button disabled class="btn purple btn-sm" title="Edit Downtime"><i class="fa fa-edit"></i></button>
                                             @endif

@@ -2,7 +2,7 @@
 
 @section('pageCSS')
 
-    <link href="google.css" rel="stylesheet" type="text/css"/>
+    <!-- <link href="google.css" rel="stylesheet" type="text/css"/> -->
     <link href="{{env('APP_URL')}}/themes/metronic/assets/global/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
     <link href="{{env('APP_URL')}}/themes/metronic/assets/global/plugins/simple-line-icons/simple-line-icons.min.css" rel="stylesheet" type="text/css"/>
     <link href="{{env('APP_URL')}}/themes/metronic/assets/global/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
@@ -93,7 +93,7 @@
                         <div class="col-md-12">
                             <!-- <form action="/asset" method="post" class="form-horizontal"> -->
 
-                            <form id="form" role="form" action="{{ route('pages.asset.store') }}" method="POST">
+                            <form id="form" role="form" action="{{ route('pages.asset.store') }}" method="POST" class="form-horizontal">
                                 @csrf
 
                                 <div class="form-group">
@@ -283,7 +283,7 @@
         </div>              
     </div>
 
-@endsection
+    @endsection
 
 @section('pageJS')
     

@@ -131,7 +131,11 @@
 
             <form method="POST" action="{{ route('admin.users.search') }}" class="mb-5">
                 @csrf
-                <a class="btn green" data-toggle="modal" href="#basic" onclick="addUser()"> Add User </a>
+                @if($create)
+                    <a class="btn green" data-toggle="modal" href="#basic" onclick="addUser()"> Add User </a>
+                @else
+                    <button class="btn green"  href="#basic" disabled> Add User </button>
+                @endif
 
             </form>
 </br>
@@ -170,8 +174,14 @@
                         </td>
 
                         <td class="text-center">
-                            <button onclick="getUserDetails({!! $user['id'] !!})" class="btn btn-sm blue btn-outline filter-submit margin-bottom" data-toggle="modal" data-target="#basic">
-                                <i class="fa fa-edit"></i> Edit</button>
+                            @if($edit)
+                                <button onclick="getUserDetails({!! $user['id'] !!})" class="btn btn-sm blue btn-outline filter-submit margin-bottom" data-toggle="modal" data-target="#basic">
+                                    <i class="fa fa-edit"></i> Edit</button>
+                            @else
+                            <button disabled class="btn btn-sm blue btn-outline filter-submit margin-bottom" data-toggle="modal" data-target="#basic">
+                                    <i class="fa fa-edit"></i> Edit</button>
+                           
+                            @endif
                             <!-- <button class="btn btn-sm blue btn-outline filter-submit margin-bottom">
                                 <i class="fa fa-eye"></i> View</button> -->
                             <!-- <button class="btn btn-sm green btn-outline filter-cancel">

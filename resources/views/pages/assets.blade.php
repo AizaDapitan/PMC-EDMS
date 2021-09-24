@@ -182,9 +182,12 @@
 
 						</div>
 
-
-						<a class="btn btn-default btn-sm" href="{{env('APP_URL')}}/asset/new"><i class="fa fa-plus"></i> Add New</a>
-						<a class="btn btn-default btn-sm" href="#" onclick="exportToExcel('#sample_4');"><i class="fa fa-file-excel-o"></i> Export</a>
+						@if($create)
+							<a class="btn btn-default btn-sm" href="{{env('APP_URL')}}/asset/new"><i class="fa fa-plus"></i> Add New</a>
+						@else
+							<button class="btn btn-default btn-sm" disabled><i class="fa fa-plus"></i> Add New</button>
+						@endif
+							<a class="btn btn-default btn-sm" href="#" onclick="exportToExcel('#sample_4');"><i class="fa fa-file-excel-o"></i> Export</a>
 
 					</div>	
 
@@ -234,12 +237,23 @@
 									<td> {{ $asset->po_reference }} </td>
 									<td> {{ $asset->po_value }} </td>
 									<td> 
-										<a href="{{env('APP_URL')}}/asset/{{$asset->id}}" title="Edit Asset" class="btn purple btn-sm">
+										@if($edit)
+											<a href="{{env('APP_URL')}}/asset/{{$asset->id}}" title="Edit Asset" class="btn purple btn-sm">
 											<i class="fa fa-edit"></i></a>
+										@else
+											<button disabled title="Edit Asset" class="btn purple btn-sm">
+											<i class="fa fa-edit"></i></button>
+										@endif
+										@if($delete)
 										<a href="#" title="Delete Asset" data="{{$asset->id}}"
 											class="btn red btn-sm deletedl delete-asset">
 											<i class="fa fa-minus-circle"></i>
-										</a>
+										@else
+										<button disabled title="Delete Asset"
+											class="btn red btn-sm">
+											<i class="fa fa-minus-circle"></i>
+										@endif
+										</button>
 									</td>
 								</tr>
 							@endforeach

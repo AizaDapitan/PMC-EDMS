@@ -2,7 +2,7 @@
 
 @section('pageCSS')
 
-    <link href="google.css" rel="stylesheet" type="text/css"/>
+    <!-- <link href="google.css" rel="stylesheet" type="text/css"/> -->
     <link href="{{env('APP_URL')}}/themes/metronic/assets/global/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
     <link href="{{env('APP_URL')}}/themes/metronic/assets/global/plugins/simple-line-icons/simple-line-icons.min.css" rel="stylesheet" type="text/css"/>
     <link href="{{env('APP_URL')}}/themes/metronic/assets/global/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
@@ -80,65 +80,70 @@
                 
                 <div class="portlet-title">
                     <div class="caption">
-                        <i class="fa fa-pencil"></i>Edit an Asset
+                        <i class="fa fa-plus"></i>Add New Asset
                     </div>
                     <div class="actions">                               
+<<<<<<< HEAD
+                        <a class="btn btn-default btn-sm" href="{{ url('/EDMS-assets') }}"><i class="fa fa-bars"></i> Asset List</a>                            
+=======
                         <!-- <a class="btn btn-default btn-sm" href="/assets"><i class="fa fa-bars"></i> Asset List</a> -->
                         <a class="btn btn-default btn-sm" href="{{ route('EDMS-assets') }}"><i class="fa fa-bars"></i> Asset List</a>
+>>>>>>> 771b21f362bd76a2ff0fef88172bcc727061bc8c
                     </div>                                                                                  
                 </div>
 
                 <div class="portlet-body">
                     <div class="row">
                         <div class="col-md-12">
-                            <form  action="{{ route('updateAsset', $asset['id']) }}" method="post" class="form-horizontal">
+                            <!-- <form action="/asset" method="post" class="form-horizontal"> -->
+
+                            <form id="form" role="form" action="{{ route('pages.asset.store') }}" method="POST" class="form-horizontal">
                                 @csrf
-                                @method('PATCH')
 
                                 <div class="form-group">
                                     <label class="col-md-3 control-label">Tag No <span style="color: red;">*</span></label>
                                     <div class="col-md-9 @error('tag') has-error @enderror">
-                                        <input type="text" class="form-control" name="tag" value="{{ $asset->tag }}">
+                                        <input type="text" class="form-control" name="tag" >
                                         @error('tag')
                                             <span for="tag" class="help-block">{{ $message }}</span>
-                                        @enderror                              
+                                        @enderror
                                     </div>
                                 </div> 
 
                                 <div class="form-group">
                                     <label class="col-md-3 control-label">Asset Type <span style="color: red;">*</span></label>
                                     <div class="col-md-9 @error('asset_type') has-error @enderror">
-                                        <input type="text" class="form-control" name="asset_type" value="{{ $asset->asset_type }}">
+                                        <input type="text" class="form-control" name="asset_type">  
                                         @error('asset_type')
                                             <span for="asset_type" class="help-block">{{ $message }}</span>
-                                        @enderror
+                                        @enderror                                                                       
                                     </div>
                                 </div>
 
                                 <div class="form-group">
                                     <label class="col-md-3 control-label">Description <span style="color: red;">*</span></label>
                                     <div class="col-md-9 @error('description') has-error @enderror">
-                                        <input type="text" class="form-control" name="description" value="{{ $asset->description }}">
+                                        <input type="text" class="form-control" name="description"> 
                                         @error('description')
-                                                <span for="description" class="help-block">{{ $message }}</span>
-                                        @enderror   
+                                            <span for="description" class="help-block">{{ $message }}</span>
+                                        @enderror                                
                                     </div>
                                 </div>
 
                                 <div class="form-group">
                                     <label class="col-md-3 control-label">Manufacturer <span style="color: red;">*</span></label>
                                     <div class="col-md-9 @error('manufacturer') has-error @enderror">
-                                        <input type="text" class="form-control" name="manufacturer" value="{{ $asset->manufacturer}}">
+                                        <input type="text" class="form-control" name="manufacturer">      
                                         @error('manufacturer')
                                             <span for="manufacturer" class="help-block">{{ $message }}</span>
-                                        @enderror                                 
+                                        @enderror                                   
                                     </div>
                                 </div>
 
                                 <div class="form-group">
                                     <label class="col-md-3 control-label">Model <span style="color: red;">*</span></label>
                                     <div class="col-md-9 @error('model') has-error @enderror">
-                                        <input type="text" class="form-control" name="model" value="{{ $asset->model }}">
+                                        <input type="text" class="form-control" name="model">     
                                         @error('model')
                                             <span for="model" class="help-block">{{ $message }}</span>
                                         @enderror                                  
@@ -148,10 +153,10 @@
                                 <div class="form-group">
                                     <label class="col-md-3 control-label">Serial No <span style="color: red;">*</span></label>
                                     <div class="col-md-9 @error('serial') has-error @enderror">
-                                        <input type="text" class="form-control" name="serial" value="{{ $asset->serial }}">
+                                        <input type="text" class="form-control" name="serial"> 
                                         @error('serial')
                                             <span for="serial" class="help-block">{{ $message }}</span>
-                                        @enderror                                       
+                                        @enderror
                                     </div>
                                 </div>
 
@@ -159,12 +164,9 @@
                                     <label class="col-md-3 control-label">Year Manufactured <span style="color: red;">*</span></label>
                                     <div class="col-md-9 @error('year_manufactured') has-error @enderror">
                                         <select class="form-control" name="year_manufactured">
+                                            <option value="" selected> -- Select Year Manufactured -- </option> 
                                             @for( $x = 1990; $x < 2100; $x++ )
-                                                @if( $x == $asset->year_manufactured )
-                                                    <option value="{{ $x }}" selected> {{ $x }} </option> 
-                                                @else
-                                                    <option value="{{ $x }}"> {{ $x }} </option>                                        
-                                                @endif                                                                                       
+                                                <option value="{{ $x }}"> {{ $x }} </option>                                         
                                             @endfor
                                         </select>
                                         @error('year_manufactured')
@@ -177,28 +179,25 @@
                                     <label class="col-md-3 control-label">Commissioning Date <span style="color: red;">*</span></label>
                                     <div class="col-md-9 @error('commissioning_date') has-error @enderror">
                                         <input type="date" class="form-control" name="commissioning_date" 
-                                            value="{{ \Carbon\Carbon::parse($asset->commissioning_date)->format('Y-m-d') }}">
+                                            value="{{ \Carbon\Carbon::now()->format('Y-m-d') }}">                                       
                                         @error('commissioning_date')
                                             <span for="commissioning_date" class="help-block">{{ $message }}</span>
-                                        @enderror                                       
-                                    </div>
+                                        @enderror
+                                    </div>                                    
                                 </div>
 
                                 <div class="form-group">
                                     <label class="col-md-3 control-label">Site <span style="color: red;">*</span></label>
                                     <div class="col-md-9 @error('site') has-error @enderror">
                                         <select class="form-control" name="site">
+                                            <option value="" selected> -- Select Site -- </option> 
                                             @foreach( $site_options as $site )
-                                                @if( $site == $asset->site )
-                                                    <option value="{{ $site }}" selected> {{ $site }} </option>
-                                                @else
-                                                    <option value="{{ $site }}"> {{ $site }} </option>
-                                                @endif
+                                                <option value="{{ $site }}"> {{ $site }} </option>
                                             @endforeach
                                         </select>   
                                         @error('site')
                                             <span for="site" class="help-block">{{ $message }}</span>
-                                        @enderror     
+                                        @enderror    
                                     </div>
                                 </div>
 
@@ -206,32 +205,29 @@
                                     <label class="col-md-3 control-label">Location <span style="color: red;">*</span></label>
                                     <div class="col-md-9 @error('location') has-error @enderror">
                                         <select class="form-control" name="location">
+                                            <option value="" selected> -- Select Location -- </option> 
                                             @foreach( $locations as $location )
-                                                @if( $location == $asset->location )
-                                                    <option value="{{ $location }}" selected>{{ $location }}</option>
-                                                @else
-                                                    <option value="{{ $location }}">{{ $location }}</option>
-                                                @endif  
+                                                <option value="{{ $location }}">{{ $location }}</option>
                                             @endforeach                                           
-                                        </select>  
+                                        </select>
                                         @error('location')
                                             <span for="location" class="help-block">{{ $message }}</span>
-                                        @enderror                                         
+                                        @enderror                                       
                                     </div>
                                 </div>
 
                                 <div class="form-group">
                                     <label class="col-md-3 control-label">Condition <span style="color: red;">*</span></label>
-                                    <div class="col-md-9">
+                                    <div class="col-md-9 @error('condition') has-error @enderror">
                                         <select class="form-control" name="condition">
+                                            <option value="" selected> -- Select Conditions -- </option> 
                                             @foreach( $conditions as $condition )
-                                                @if( $condition == $asset->condition )
-                                                    <option value="{{ $condition }}" selected>{{ $condition }}</option>
-                                                @else
-                                                    <option value="{{ $condition }}">{{ $condition }}</option>
-                                                @endif  
+                                                <option value="{{ $condition }}">{{ $condition }}</option>
                                             @endforeach  
-                                        </select>       
+                                        </select> 
+                                        @error('condition')
+                                            <span for="condition" class="help-block">{{ $message }}</span>
+                                        @enderror       
                                     </div>
                                 </div>
 
@@ -239,45 +235,43 @@
                                     <label class="col-md-3 control-label">Status <span style="color: red;">*</span></label>
                                     <div class="col-md-9 @error('status') has-error @enderror">
                                         <select class="form-control" name="status">
+                                            <option value="" selected> -- Select Status -- </option> 
                                             @foreach( $statuses as $status )
-                                                @if( $status == $asset->status )
-                                                    <option value="{{ $status }}" selected>{{ $status }}</option>
-                                                @else
-                                                    <option value="{{ $status }}">{{ $status }}</option>
-                                                @endif  
+                                                <option value="{{ $status }}">{{ $status }}</option>
                                             @endforeach  
-                                        </select> 
+                                        </select>    
                                         @error('status')
                                             <span for="status" class="help-block">{{ $message }}</span>
-                                        @enderror       
+                                        @enderror    
                                     </div>
                                 </div>
 
                                 <div class="form-group">
                                     <label class="col-md-3 control-label">Vendor</label>
                                     <div class="col-md-9">
-                                        <input type="text" class="form-control" name="vendor" value="{{ $asset->vendor }}">  
+                                        <input type="text" class="form-control" name="vendor">                                        
                                     </div>
                                 </div>
 
                                 <div class="form-group">
                                     <label class="col-md-3 control-label">P.O. Reference</label>
                                     <div class="col-md-9">
-                                        <input type="text" class="form-control" name="po_reference" value="{{ $asset->po_reference }}">
+                                        <input type="text" class="form-control" name="po_reference">                                      
                                     </div>
                                 </div>
 
                                 <div class="form-group">
                                     <label class="col-md-3 control-label">P.O. Value</label>
                                     <div class="col-md-9">
-                                        <input type="number" step="0.01" min="0.00" value="{{ $asset->po_value }}" class="form-control" name="po_value">                                     
+                                        <input type="number" step="0.01" min="0.00" class="form-control" name="po_value">                                     
                                     </div>
                                 </div>
 
                                 <div class="form-actions fluid">
                                     <div class="col-md-offset-9 col-md-3">
-                                        <button type="submit" class="btn green">Update Asset</button>
+                                        <button type="submit" class="btn green">Create New Asset</button>
                                         <a class="btn default" href="{{ route('EDMS-assets') }}">Cancel</a>
+                                        
                                         <!-- <a class="btn default" href="/assets">Cancel</a> -->
                                     </div>
                                 </div>
@@ -293,7 +287,7 @@
         </div>              
     </div>
 
-@endsection
+    @endsection
 
 @section('pageJS')
     

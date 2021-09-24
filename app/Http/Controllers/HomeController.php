@@ -11,6 +11,8 @@ use App\GensetUtilization;
 use Illuminate\Http\Request;
 use App\GensetUtilizationFlatdata;
 use Illuminate\Pagination\LengthAwarePaginator;
+use Illuminate\Support\Facades\Hash;
+use App\Services\RoleRightService;
 
 class HomeController extends Controller
 {
@@ -19,9 +21,10 @@ class HomeController extends Controller
      *
      * @return void
      */
-    public function __construct()
-    {
-        $this->middleware('auth');
+    public function __construct(
+        RoleRightService $roleRightService
+    ) {
+        $this->roleRightService = $roleRightService;
     }
 
     /**
@@ -31,6 +34,21 @@ class HomeController extends Controller
      */
     public function index(Request $request)
     {
+        $rolesPermissions = $this->roleRightService->hasPermissions("Dashboard");
+        if (!$rolesPermissions['view']) {
+            abort(401);
+        }
+
+        $rolesPermissionsDowntime = $this->roleRightService->hasPermissions("Downtime");
+
+        $deleteDowntime = $rolesPermissionsDowntime['delete'];
+        $editDowntime = $rolesPermissionsDowntime['edit'];
+        $createDowntime = $rolesPermissionsDowntime['create'];
+
+        $rolesPermissionsUnit = $this->roleRightService->hasPermissions("Units");
+        
+        $createUnit = $rolesPermissionsUnit['create'];
+
         $displayDate    = [];
         $displayData    = [];
         $endDate        = $request->has('endDate') ? Carbon::parse($request->endDate) : Carbon::now();
@@ -199,12 +217,36 @@ class HomeController extends Controller
 
         // }
 
-        return view('dashboard', compact('units', 'displayDate', 'displayData', 'downtime', 'u_name', 'u_type', 'u_location', 'u_type_downtime_total'));
+        return view('dashboard', compact(
+            'units',
+            'displayDate',
+            'displayData',
+            'downtime',
+            'u_name',
+            'u_type',
+            'u_location',
+            'u_type_downtime_total',
+            'deleteDowntime',
+            'editDowntime',
+            'createDowntime',
+            'createUnit'
+        ));
     }
 
 
     public function downtimeList(Request $request)
     {
+
+        $rolesPermissions = $this->roleRightService->hasPermissions("Downtime List");
+        if (!$rolesPermissions['view']) {
+            abort(401);
+        }
+
+        $create = $rolesPermissions['create'];
+        $edit = $rolesPermissions['edit'];
+        $search = $rolesPermissions['search'];
+        $print = $rolesPermissions['print'];
+        $delete = $rolesPermissions['delete'];
 
         // Scheduled = 1 // Unscheduled = 0 // Grid Outgage = 2
         // $endDate        = $request->has('endDate') ? Carbon::parse($request->endDate) : Carbon::now();
@@ -266,12 +308,40 @@ class HomeController extends Controller
             $downtime = Downtime::latest()->get();
         }
 
-        return view('pages.downlist', compact('downtime', 'u_name', 'u_type', 'u_location'));
+        return view('pages.downlist', compact(
+            'downtime',
+            'u_name',
+            'u_type',
+            'u_location',
+            'create',
+            'edit',
+            'search',
+            'print',
+            'delete'
+        ));
     }
 
 
     public function genset(Request $request)
     {
+        $rolesPermissions = $this->roleRightService->hasPermissions("Genset Units");
+        if (!$rolesPermissions['view']) {
+            abort(401);
+        }
+        $rolesPermissionsUnit = $this->roleRightService->hasPermissions("Units");
+        
+        $createUnit = $rolesPermissionsUnit['create'];
+
+        $create = $rolesPermissions['create'];
+        $edit = $rolesPermissions['edit'];
+        $search = $rolesPermissions['search'];
+        $print = $rolesPermissions['print'];
+        $delete = $rolesPermissions['delete'];
+
+
+        $rolesPermissionsRuntime = $this->roleRightService->hasPermissions("Add Genset Run Time");
+        $createRuntime = $rolesPermissionsRuntime['create'];
+
 
         $displayDate            = [];
         $displayData            = [];
@@ -418,12 +488,36 @@ class HomeController extends Controller
             array_push($displayData, $data);
         }
 
-        return view('pages.genset', compact('gensets', 'displayDate', 'displayData', 'units', 'u_name', 'u_location'));
+        return view('pages.genset', compact(
+            'gensets',
+            'displayDate',
+            'displayData',
+            'units',
+            'u_name',
+            'u_location',
+            'create',
+            'edit',
+            'search',
+            'print',
+            'delete',
+            'createRuntime',
+            'createUnit'
+        ));
     }
 
 
     public function assets(Request $request)
     {
+
+        $rolesPermissions = $this->roleRightService->hasPermissions("Assets");
+        if (!$rolesPermissions['view']) {
+            abort(401);
+        }
+        $create = $rolesPermissions['create'];
+        $edit = $rolesPermissions['edit'];
+        $delete = $rolesPermissions['delete'];
+
+
         $asset = new Asset;
         $locations = $asset->locations();
         $conditions = $asset->conditions();
@@ -458,7 +552,17 @@ class HomeController extends Controller
             ->get();
 
 
-        return view('pages.assets', compact('assets', 'locations', 'conditions', 'site_options', 'statuses', 'asset_types'));
+        return view('pages.assets', compact(
+            'assets',
+            'locations',
+            'conditions',
+            'site_options',
+            'statuses',
+            'asset_types',
+            'create',
+            'edit',
+            'delete'
+        ));
     }
 
 
@@ -470,7 +574,12 @@ class HomeController extends Controller
 
         $validate = $request->validate([
             'current_password'      => 'required',
-            'new_password'          => 'required',
+            'new_password'          => [
+                'required', 'string', 'min:8', 'regex:/[a-z]/',
+                'regex:/[A-Z]/',
+                'regex:/[0-9]/',
+                'regex:/[@$!%*#?&._]/'
+            ],
             'new_confirm_password'  => 'same:new_password'
         ]);
 

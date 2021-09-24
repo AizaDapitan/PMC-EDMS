@@ -35,25 +35,18 @@ class UserRightController extends Controller
         $roles = auth()->user()->role;
         $roles =  $this->roleService->all()->where('active', '1')->where('name', '<>', 'ADMIN')->sortBy('name');
 
-        $users =  $this->userService->all()->where('active', '1')->where('username','<>', '')->where('role','<>', 'ADMIN')->sortBy('name');
+        $users =  $this->userService->all()->where('active', '1')->where('username', '<>', '')->where('role', '<>', 'ADMIN')->sortBy('name');
         $permissions = $this->permissionService->all()->where('active', '1')->sortBy('description');
         $modules = $this->permissionService->getModule()->sortBy('description');
 
-        
-        //if ($roles != "ADMIN") 
-        //{
-        //    $rolesPermissions = $this->roleRightService->hasPermissions("User Rights");
 
-        //    if (!$rolesPermissions['view']) {
-        //        abort(401);
-        //    }
-           
-        //    $create = $rolesPermissions['create'];
-        //}
-        //else 
-        //{
-            $create = true;
-        //}
+        $rolesPermissions = $this->roleRightService->hasPermissions("User Rights");
+
+        if (!$rolesPermissions['view']) {
+            abort(401);
+        }
+
+        $create = $rolesPermissions['create'];
 
         return view('admin.useraccessrights', compact(
             'users',
@@ -69,7 +62,7 @@ class UserRightController extends Controller
             $users_permissions = $this->userrightService->getById($request->userid);
             return $users_permissions;
         }
-        
+
         return $this->userrightService->create($request);
     }
 }

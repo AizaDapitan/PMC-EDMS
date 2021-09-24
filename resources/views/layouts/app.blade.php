@@ -145,8 +145,8 @@
     @yield('pageJS')
 
 
-    <script src="{{env('APP_URL')}}/themes/metronic/assets/global/plugins/jquery-1.11.0.min.js" type="text/javascript"></script>
-    <script src="{{env('APP_URL')}}/themes/metronic/assets/global/plugins/jquery-migrate-1.2.1.min.js" type="text/javascript"></script>
+    <!-- <script src="{{env('APP_URL')}}/themes/metronic/assets/global/plugins/jquery-1.11.0.min.js" type="text/javascript"></script> -->
+    <!-- <script src="{{env('APP_URL')}}/themes/metronic/assets/global/plugins/jquery-migrate-1.2.1.min.js" type="text/javascript"></script> -->
     <!-- IMPORTANT! Load jquery-ui-1.10.3.custom.min.js before bootstrap.min.js to fix bootstrap tooltip conflict with jquery ui tooltip -->
     <script src="{{env('APP_URL')}}/themes/metronic/assets/global/plugins/jquery-ui/jquery-ui-1.10.3.custom.min.js" type="text/javascript"></script>
     <script src="{{ url('assets/global/scripts/datatable.js') }}" type="text/javascript"></script>
@@ -176,6 +176,7 @@
 		nsec = d.getSeconds(),
 		ap;
 		var ohour = nhour + 1;
+        if (nhour <= 9) nhour = "0" + nhour;
 		if (nhour == 0) {
 		ap = " AM";
 		nhour = 12;
@@ -218,6 +219,8 @@
 			success: function(response) {}
 		});
 		}
+        console.log(schedule);
+        console.log(curDate);
 		if (schedule > curDate) {
 		var TimeDiff = timeDiffCalc(new Date(schedule), new Date());
 		} else {

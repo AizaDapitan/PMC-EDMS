@@ -75,7 +75,8 @@
 
     <div class="col-md-6 col-sm-12">
         
-        <form role="FORM" method="POST" action="/downtime/{{$downtime->id}}">
+        <!-- <form role="FORM" method="POST" action="/downtime/{{$downtime->id}}"> -->
+        <form role="FORM" method="POST" action="{{ route('updateDowntime', $downtime['id']) }}" class="form-horizontal">
             @csrf
             @method('PATCH')
 
@@ -145,6 +146,7 @@
 
         
             <button class="btn btn-primary"> Update Downtime </button>
+            <input type="button" value="Cancel" class="btn default" onclick="RefreshParent()" />
 
         </form>
 
@@ -210,5 +212,16 @@
         });
 
     </script>
+
+    <script type="text/javascript">
+        function RefreshParent() 
+        {
+            if (window.opener != null && !window.opener.closed) {
+                window.opener.location.reload();
+                close();
+            }
+        }
+        window.onbeforeunload = RefreshParent;        
+    </script>    
 
 @endsection

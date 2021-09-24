@@ -8,19 +8,19 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Permission;
 use App\Services\PermissionService;
-//use App\Services\RoleRightService;
+use App\Services\RoleRightService;
 
 class PermissionController extends Controller
 {
 
     private $permissionService;
     public function __construct(
-        PermissionService $permissionService//,
-        //RoleRightService $roleRightService
+        PermissionService $permissionService,
+        RoleRightService $roleRightService
     ) {
 
         $this->permissionService = $permissionService;
-        //$this->roleRightService = $roleRightService;
+        $this->roleRightService = $roleRightService;
     }
 
     /**
@@ -30,14 +30,14 @@ class PermissionController extends Controller
      */
     public function index()
     {
-        // $rolesPermissions = $this->roleRightService->hasPermissions("Permissions Maintenance");
+        $rolesPermissions = $this->roleRightService->hasPermissions("Permissions Maintenance");
 
-        // if (!$rolesPermissions['view']) {
-        //     abort(401);
-        // }
+        if (!$rolesPermissions['view']) {
+            abort(401);
+        }
 
-        // $create = $rolesPermissions['create'];
-        // $edit = $rolesPermissions['edit'];
+        $create = $rolesPermissions['create'];
+        $edit = $rolesPermissions['edit'];
 
         $modules = $this->permissionService->getModule();
         $permissions = Permission::orderBy('module_type', 'asc')->orderBy('description', 'asc')->get();
@@ -45,9 +45,9 @@ class PermissionController extends Controller
 
         return view('admin.permissions', compact(
             'permissions',
-            'modules'
-            //'create',
-            //'edit',
+            'modules',
+            'create',
+            'edit',
         ));
     }
 

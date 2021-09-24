@@ -31,21 +31,13 @@ class RoleRightController extends Controller
         $permissions = $this->permissionService->all()->where('active', '1')->sortBy('description');
         $modules = $this->permissionService->getModule()->sortBy('description');
 
-        // if ($roles != "ADMIN") 
-        // {                
-        //     $rolesPermissions = $this->roleRightService->hasPermissions("Role Rights");
+          $rolesPermissions = $this->roleRightService->hasPermissions("Role Rights");
     
-        //     if (!$rolesPermissions['view']) {
-        //         abort(401);
-        //     }
+            if (!$rolesPermissions['view']) {
+                abort(401);
+            }
     
-        //     $create = $rolesPermissions['create'];
-        // }
-
-        // else 
-        // {
-            $create = true;
-        //}
+            $create = $rolesPermissions['create'];
 
         
 

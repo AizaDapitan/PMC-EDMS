@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Services\UserService;
-// use App\Services\RoleRightService;
+use App\Services\RoleRightService;
 use Notification;
 use App\User;
 use App\Role;
@@ -17,35 +17,33 @@ class UserController extends Controller
     private $roleRightService;
 
     public function __construct(
-        UserService $userService
-        // RoleRightService $roleRightService
+        UserService $userService,
+        RoleRightService $roleRightService
     ) {
         $this->userService = $userService;
-        // $this->roleRightService = $roleRightService;
+        $this->roleRightService = $roleRightService;
     }
 
     public function index()
     {
-        // $rolesPermissions = $this->roleRightService->hasPermissions("User Maintenance");
+        $rolesPermissions = $this->roleRightService->hasPermissions("Users Maintenance");
 
-        // $view = $rolesPermissions['view'];
-        // if (!$view) {
-        //     abort(401);
-        // }
+        $view = $rolesPermissions['view'];
+        if (!$view) {
+            abort(401);
+        }
         $roles = Role::where('active', '1')->get();
         $users = User::all();
-        // $create = $rolesPermissions['create'];
-        // $edit = $rolesPermissions['edit'];
-        // $activateDeactivate = $rolesPermissions['activateDeactivate'];
-        // $delete = $rolesPermissions['delete'];
+        $create = $rolesPermissions['create'];
+        $edit = $rolesPermissions['edit'];
+        $delete = $rolesPermissions['delete'];
 
         return view('admin.users', compact(
             'roles',
-            'users'
-            // 'create',
-            // 'edit',
-            // 'activateDeactivate',
-            // 'delete'
+            'users',
+            'create',
+            'edit',
+            'delete'
         ));
     }
 
@@ -92,7 +90,30 @@ class UserController extends Controller
 
     public function update(Request $request)    
     {
-        return $this->userService->update($request);
+
+        $user = User::where('username', $request->username)
+        ->where('id', '<>', $request->id)
+        ->first();
+        if ($user) 
+        {
+            $request->session()->flash('errorMesssage', '<strong>Username!</strong> already exists.');                        
+            return redirect()->back();
+        }
+        else
+        {
+            $userEmail = User::where('email', $request->email)
+            ->where('id', '<>', $request->id)
+            ->first();
+            if ($userEmail) 
+            {
+                $request->session()->flash('errorMesssage', '<strong>Email!</strong> already exists.');                        
+                return redirect()->back();
+            }            
+            else
+            {
+                return $this->userService->update($request);
+            }
+        }        
     }               
     public function lock(Request $request, $id)
     {

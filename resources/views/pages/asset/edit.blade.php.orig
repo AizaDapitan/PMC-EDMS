@@ -83,8 +83,12 @@
                         <i class="fa fa-pencil"></i>Edit an Asset
                     </div>
                     <div class="actions">                               
+<<<<<<< HEAD
+                        <a class="btn btn-default btn-sm" href="{{ url('/EDMS-assets') }}"><i class="fa fa-bars"></i> Asset List</a>                            
+=======
                         <!-- <a class="btn btn-default btn-sm" href="/assets"><i class="fa fa-bars"></i> Asset List</a> -->
                         <a class="btn btn-default btn-sm" href="{{ route('EDMS-assets') }}"><i class="fa fa-bars"></i> Asset List</a>
+>>>>>>> 771b21f362bd76a2ff0fef88172bcc727061bc8c
                     </div>                                                                                  
                 </div>
 

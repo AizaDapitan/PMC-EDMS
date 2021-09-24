@@ -102,7 +102,11 @@
 				 		<div class="pull-right">
 
 						 	<button type="button" class="btn default" data-dismiss="modal">Cancel</button>
+						@if($createDowntime)
 							<input type="submit" class="btn blue" value="Save">
+						@else
+							<input type="submit" class="btn blue" value="Save" disabled>
+						@endif
 
 						</div>
 

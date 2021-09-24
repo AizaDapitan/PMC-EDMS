@@ -5,13 +5,21 @@ namespace App\Http\Controllers;
 use Session;
 use App\Unit;
 use Illuminate\Http\Request;
+use App\Services\RoleRightService;
 
 class UnitsController extends Controller
 {
-
+	public function __construct(
+        RoleRightService $roleRightService
+    ) {
+        $this->roleRightService = $roleRightService;
+    }
 	public function store (Request $request) 
 	{
-
+		$rolesPermissions = $this->roleRightService->hasPermissions("Unit");
+        if (!$rolesPermissions['create']) {
+            abort(401);
+        }
 		$validate = $request->validate([
 			'name'			=> 'required' ,
 			'type'			=> 'required' ,
@@ -29,11 +37,16 @@ class UnitsController extends Controller
 
 	public function editUnit($id) {
 
+		$rolesPermissions = $this->roleRightService->hasPermissions("Units");
+        if (!$rolesPermissions['view']) {
+            abort(401);
+        }
+		$edit = $rolesPermissions['edit'];
 		$unit_selected = Unit::findOrFail($id);
 
 		$units = Unit::all();
 
-		return view('pages.unit.edit', compact('unit_selected','units'));
+		return view('pages.unit.edit', compact('unit_selected','units','edit'));
 
 	}
 

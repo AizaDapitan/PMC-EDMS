@@ -9,19 +9,24 @@ use Carbon\Carbon;
 use App\DowntimeFlatData;
 use Illuminate\Http\Request;
 use App\Services\ReportService;
+use App\Services\RoleRightService;
 
 class DowntimeController extends Controller
 {
 	public function __construct(
-		// RoleRightService $roleRightService,
+		RoleRightService $roleRightService,
 		ReportService $reportService
 	) {
 		$this->reportService = $reportService;
-		// $this->roleRightService = $roleRightService;
+		$this->roleRightService = $roleRightService;
 	}
 	public function store(Request $request)
 	{
 
+		$rolesPermissions = $this->roleRightService->hasPermissions("Downtime List");
+        if (!$rolesPermissions['create']) {
+            abort(401);
+        }
 		$data = [
 			'unit_id' 		=> $request->unit,
 			'added_by'		=> \Auth::user()->name,
@@ -107,6 +112,10 @@ class DowntimeController extends Controller
 	public function editDowntime($id)
 	{
 
+        $rolesPermissions = $this->roleRightService->hasPermissions("Downtime");
+        if (!$rolesPermissions['edit']) {
+            abort(401);
+        }
 		$downtime = Downtime::findOrFail($id);
 
 		$units = Unit::all();
@@ -167,7 +176,10 @@ class DowntimeController extends Controller
 
 	public function downtimeReport(Request $request)
 	{
-
+		$rolesPermissions = $this->roleRightService->hasPermissions("Input List");
+        if (!$rolesPermissions['view']) {
+            abort(401);
+        }
 		$downtime = Downtime::latest()->limit(20)->get();
 
 		$saveLogs = $this->reportService->create("Input List", $request);
@@ -230,7 +242,10 @@ class DowntimeController extends Controller
 
 	public function downtimeReportFlatdata(Request $request)
 	{
-
+		$rolesPermissions = $this->roleRightService->hasPermissions("Downtime Report");
+        if (!$rolesPermissions['view']) {
+            abort(401);
+        }
 		$endDate        = $request->has('enddate') ? Carbon::parse($request->enddate) : Carbon::now();
 		$startDate      = $request->has('startdate') ? Carbon::parse($request->startdate) : Carbon::now();
 		$s_scheduled    = $request->has('is_scheduled') ? urldecode($request->is_scheduled) : "null";
@@ -313,7 +328,10 @@ class DowntimeController extends Controller
 
 	public function downtimeReportChart(Request $request)
 	{
-
+		$rolesPermissions = $this->roleRightService->hasPermissions("Chart Report");
+        if (!$rolesPermissions['view']) {
+            abort(401);
+        }
 		$endDate        = $request->has('enddate') ? Carbon::parse($request->enddate) : Carbon::now();
 		$startDate      = $request->has('startdate') ? Carbon::parse($request->startdate) : Carbon::now();
 		$s_scheduled    = $request->has('is_scheduled') ? urldecode($request->is_scheduled) : "null";
@@ -438,7 +456,10 @@ class DowntimeController extends Controller
 
 	public function downtimeReportMasterlist(Request $request)
 	{
-
+		$rolesPermissions = $this->roleRightService->hasPermissions("Equipment Master List");
+        if (!$rolesPermissions['view']) {
+            abort(401);
+        }
 		$locations = Unit::all()->where('name', '!=', '')->groupBy('location');
 		$types = Unit::all()->where('name', '!=', '')->groupBy('type');
 
@@ -490,7 +511,10 @@ class DowntimeController extends Controller
 
 	public function downtimeReportRawData(Request $request)
 	{
-
+		$rolesPermissions = $this->roleRightService->hasPermissions("Raw Data");
+        if (!$rolesPermissions['view']) {
+            abort(401);
+        }
 		$downtime = Downtime::latest()->get();
 
 		$saveLogs = $this->reportService->create("Raw Data", $request);
@@ -508,7 +532,10 @@ class DowntimeController extends Controller
 
 	public function downtimeReportDaily(Request $request)
 	{
-
+		$rolesPermissions = $this->roleRightService->hasPermissions("Daily Up-Time Report");
+        if (!$rolesPermissions['view']) {
+            abort(401);
+        }
 		$endDate        = $request->has('enddate') ? Carbon::parse($request->enddate) : Carbon::now();
 		$startDate      = $request->has('startdate') ? Carbon::parse($request->startdate) : Carbon::now();
 		$s_scheduled    = $request->has('is_scheduled') ? urldecode($request->is_scheduled) : "null";
