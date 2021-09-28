@@ -67,15 +67,15 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/rpt_genset_utilization', 'GensetController@gensetReport');
     Route::get('/genset/{id}', 'GensetController@editGenset');
     Route::post('/genset', 'GensetController@store');
-    Route::patch('/genset/{id}', 'GensetController@updateGenset');
-    Route::delete('/genset/{id}', 'GensetController@deleteGenset');
-    Route::get('/genset/{id}', 'GensetController@editGenset');
-    Route::post('/genset', 'GensetController@store');
     Route::patch('/genset/{id}', 'GensetController@updateGenset')->name('updateGenset');
     Route::delete('/genset/{id}', 'GensetController@deleteGenset');
-    Route::post('/genset', 'GensetController@store');
-    Route::delete('/genset/{id}', 'GensetController@deleteGenset');
-    Route::get('genset_list', 'GensetController@gensetList')->name('genset_list');
+    // Route::get('/genset/{id}', 'GensetController@editGenset');
+    // Route::post('/genset', 'GensetController@store');
+    // Route::patch('/genset/{id}', 'GensetController@updateGenset')->name('updateGenset');
+    // Route::delete('/genset/{id}', 'GensetController@deleteGenset');
+    // Route::post('/genset', 'GensetController@store');
+    // Route::delete('/genset/{id}', 'GensetController@deleteGenset');
+    // Route::get('genset_list', 'GensetController@gensetList')->name('genset_list');
 
     //Downtime Controller
     Route::get('rpt_downtimelist', 'DowntimeController@downtimeReport')->name('rpt_downtimelist');
@@ -101,7 +101,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::patch('/asset/{id}', 'AssetController@updateAsset')->name('updateAsset');
     Route::delete('/asset/{id}', 'AssetController@deleteAsset');
     // Route::post('/asset', 'AssetController@store');
-    Route::delete('/asset/{id}', 'AssetController@deleteAsset');
+    // Route::delete('/asset/{id}', 'AssetController@deleteAsset');
     
     //Unit Controller
     Route::get('/unit/{id}', 'UnitsController@editUnit');

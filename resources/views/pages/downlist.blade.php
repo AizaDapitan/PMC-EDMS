@@ -40,7 +40,17 @@
 
 	<!-- Search | Filter -->
 	<div class="row">
-		
+		@if(session()->has('message'))
+            <div class="col-md-12">
+
+                <div class="alert alert-success alert-dismissable">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true"></button>
+                	<span class="fa fa-check-square-o"></span>
+                    <strong>Success!</strong> {{ session()->get('message') }}
+                </div>
+
+            </div>
+        @endif
 		<div class="col-md-12">
 			
 			<div style="margin-left: 50px;"> 

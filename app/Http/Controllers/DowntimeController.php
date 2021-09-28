@@ -685,7 +685,9 @@ class DowntimeController extends Controller
 		$downtime->downtime_flat()->delete();
 
 		$downtime->delete();
-
-		return 'recored successfully deleted';
+		
+		// return redirect()->back()->with('success', 'Record successfully deleted!');
+		Session::flash('message', 'Record successfully deleted!!');
+		return 'record successfully deleted';
 	}
 }

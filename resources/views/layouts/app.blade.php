@@ -219,8 +219,8 @@
 			success: function(response) {}
 		});
 		}
-        console.log(schedule);
-        console.log(curDate);
+        // console.log(schedule);
+        // console.log(curDate);
 		if (schedule > curDate) {
 		var TimeDiff = timeDiffCalc(new Date(schedule), new Date());
 		} else {

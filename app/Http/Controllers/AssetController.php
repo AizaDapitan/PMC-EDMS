@@ -134,6 +134,7 @@ class AssetController extends Controller
 
 		$asset->delete();
 
+		Session::flash('message', 'Asset is successfully deleted!!');
 		return 'Asset successfully deleted';
 
 

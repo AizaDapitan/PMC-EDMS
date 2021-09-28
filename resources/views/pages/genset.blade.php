@@ -47,6 +47,7 @@
 
                 <div class="alert alert-success alert-dismissable">
                     <button type="button" class="close" data-dismiss="alert" aria-hidden="true"></button>
+                	<span class="fa fa-check-square-o"></span>
                     <strong>Success!</strong> {{ session()->get('message') }}
                 </div>
 

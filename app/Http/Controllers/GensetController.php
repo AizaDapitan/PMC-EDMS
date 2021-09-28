@@ -469,6 +469,8 @@ class GensetController extends Controller
 		$flat_data = GensetUtilizationFlatdata::where('downtime_id', $genset->id)->delete();
 
 		$genset->delete();
+		
+		Session::flash('message', 'Genset is successfully deleted!!');
 
 		return 'record successfully deleted';
 
