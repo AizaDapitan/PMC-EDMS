@@ -157,7 +157,7 @@
 							<td >{{ $down->kwh }}</td>							
 							<td width="30%">{{ $down->remarks }}</td>
 							<td>
-								<a href="#" class="btn purple btn-sm" onclick="window.open('/genset/{{$down->id}}','displayWindow','toolbar=no,scrollbars=yes,width=800,height=600'); return false; " title="Edit Genset"><i class="fa fa-edit"></i></a>
+								<a href="#" class="btn purple btn-sm" onclick="window.open('{{env('APP_URL')}}/genset/{{$down->id}}','displayWindow','toolbar=no,scrollbars=yes,width=800,height=600'); return false; " title="Edit Genset"><i class="fa fa-edit"></i></a>
                                 <a href="#" class="btn red btn-sm deletedl" data="{{ $down->id }}" title="Delete Genset"><i class="fa fa-minus-circle"></i></a>
 							</td>
 						</tr>

@@ -78,7 +78,7 @@ function refresh_all(){
 		append_url += "&s_type="+s_type;
 	}
 
-   	window.location.href = encodeURI("{{env('APP_URL')}}/genset?startDate="+start+"&endDate="+end+"&type="+datetype+append_url);
+   	window.location.href = encodeURI(document.URL +"/?startDate="+start+"&endDate="+end+"&type="+datetype+append_url);
 
 }
 

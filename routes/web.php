@@ -100,7 +100,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::post('/asset', 'AssetController@store')->name('pages.asset.store');;
     Route::patch('/asset/{id}', 'AssetController@updateAsset')->name('updateAsset');
     Route::delete('/asset/{id}', 'AssetController@deleteAsset');
-    Route::post('/asset', 'AssetController@store');
+    // Route::post('/asset', 'AssetController@store');
     Route::delete('/asset/{id}', 'AssetController@deleteAsset');
     
     //Unit Controller
