@@ -265,8 +265,8 @@
 
                                 <div class="form-actions fluid">
                                     <div class="col-md-offset-9 col-md-3">
-                                        <button type="submit" class="btn green">Create New Asset</button>
-                                        <a class="btn default" href="{{ route('EDMS-assets') }}">Cancel</a>
+                                        <button type="submit" class="btn green" style="font-size:12px; padding:7px 10px;">Create New Asset</button>
+                                        <a class="btn default" href="{{ route('EDMS-assets') }}" style="font-size:12px; padding:7px 10px;">Cancel</a>
                                         
                                         <!-- <a class="btn default" href="/assets">Cancel</a> -->
                                     </div>

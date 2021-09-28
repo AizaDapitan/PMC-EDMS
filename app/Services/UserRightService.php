@@ -65,7 +65,6 @@ class UserRightService
         $userrights = false;
         UsersPermissions::where('user_id', '=', $fields->userid)->delete();
         $listOfPermissions = explode(',', $fields->users_permissions);
-
         foreach ($listOfPermissions as $permission) {
 
             $permissionarray = explode("_", $permission);
@@ -77,15 +76,10 @@ class UserRightService
                     'action' => $permissionarray[2],
                 ];
                 $userrights = $this->repository->create($data);
-
-                // }
             }
         }
-        if ($userrights) {
-            return redirect()->back()->with('success', 'User Access Right has been added successfully!');
-        } else {
-            return redirect()->back()->with('failed', 'Adding Rights failed.');
-        }
+
+        return redirect()->back()->with('success', 'User Access Right has been saved successfully!');
     }
 
     public function destroy($id)
@@ -112,7 +106,5 @@ class UserRightService
             ]);
         }
         return $data;
-
     }
-
 }
